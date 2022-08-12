@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<title>Assignment 5: Give a little bit</title>
+<link rel="stylesheet" href="../style/cs21.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_assignment_5_give_a_little_bit">Assignment 5: Give a little bit</a></li>
+<li><a href="#_four_letter_words">1. Four letter words</a></li>
+<li><a href="#_binary_to_ascii">2. Binary to ASCII</a></li>
+<li><a href="#_read_raw">3. Read raw</a></li>
+<li><a href="#_glitch">4. Glitch</a></li>
+<li><a href="#_submit_your_work">5. Submit your work</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_assignment_5_give_a_little_bit">Assignment 5: Give a little bit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Due Thursday, , before midnight</strong></p>
+</div>
+<div class="paragraph">
+<p>The goals for this assignment are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Understand binary representations of data types</p>
+</li>
+<li>
+<p>Directly manipulate basic types at the bit level</p>
+</li>
+<li>
+<p>Work with bitwise operators: |, &amp;, ~, ^</p>
+</li>
+<li>
+<p>Work with binary files</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>All programs must run without memory errors and leaks!</strong></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_four_letter_words">1. Four letter words</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the program, <code>word.c</code>, implement a program that asks the user for a 4-letter word
+and stores the characters within a single <code>unsigned int</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ <strong>./word</strong>
+Enter 4 characters: love
+Debug: e = 0x00000065
+Debug: v = 0x00007600
+Debug: o = 0x006F0000
+Debug: l = 0x6C000000
+Your number is: 1819244133 (0x6c6f7665)
+$ <strong>./word</strong>
+Enter 4 characters: !@#$
+Debug: $ = 0x00000024
+Debug: # = 0x00002300
+Debug: @ = 0x00400000
+Debug: ! = 0x21000000
+Your number is: 557851428 (0x21402324)
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Requirements/Hints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can assume the user enters a valid 4-letter word</p>
+</li>
+<li>
+<p>For debugging, print the hexadecimal values of each character, shifted to its correct spot</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_binary_to_ascii">2. Binary to ASCII</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the program, <code>binarychar.c</code>, implement a program that asks the user for an 8-bit
+binary number and outputs the corresponding character.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ <strong>make binarychar</strong>
+gcc -g -Wall -Wvla -Werror binarychar.c -o binarychar
+$ <strong>./binarychar</strong>
+Enter 8 bits: 01100001
+Your character is: a
+$ <strong>./binarychar</strong>
+Enter 8 bits: 01111100
+Your character is: |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Requirements/Hints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can assume that the user enters a valid 8-bit binary number</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_read_raw">3. Read raw</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the file, <code>read_ppm.c</code>, implement a modified version of your PPM reader from
+<a href="asst04.html">Assignment 04</a> that reads PPM files in <em>binary</em> format,
+rather than <em>ascii</em> format.</p>
+</div>
+<div class="paragraph">
+<p>In raw format, the header information is still ASCII (although the magic number is "P6", not "P3"),
+but the pixel data is in binary format. Use <code>fread</code> to read in the pixels.</p>
+</div>
+<div class="paragraph">
+<p>Use <code>test_ppm.c</code> to again test that your reader is working</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ <strong>make test_ppm</strong>
+gcc -g -Wall -Wvla -Werror test_ppm.c read_ppm.c -o test_ppm
+$ <strong>./test_ppm</strong>
+Testing file feep-raw.ppm: 4 4
+(0,0,0) (100,0,0) (0,0,0) (255,0,255)
+(0,0,0) (0,255,175) (0,0,0) (0,0,0)
+(0,0,0) (0,0,0) (0,15,175) (0,0,0)
+(255,0,255) (0,0,0) (0,0,0) (255,255,255)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Requirements/Hints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remember to open the file with "rb", not "r"</p>
+</li>
+<li>
+<p>Use <code>fread</code> to copy all the pixel data into your array as one large block</p>
+</li>
+<li>
+<p>If you needed to modify the function signature in <code>ppm_read</code> because you allocated an array of arrays, be sure to update <code>read_ppm.h</code> here as well. <strong>Just be careful to keep the new definition of ppm_pixel</strong>!</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_glitch">4. Glitch</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Glitch_art">Glitch Art</a> is the practice of leveraging technological errors for artistic purposes. Some cool examples can be found here by <a href="https://mobile.twitter.com/glitchartbot">glitchartbot</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://www.joelatimer.com/wp-content/uploads/2019/09/JoeLatimer.com-Blog-Featured-Image-Landscape-08-31-19.jpg" alt="JoeLatimer.com Blog Featured Image Landscape 08 31 19" height="300px">
+</div>
+</div>
+<div class="paragraph">
+<p>First, implement a new function, <code>write_ppm</code>, defined in <code>read_ppm.c</code>. Similarly to <a href="asst04.html">Assignment 04</a>, you should change the definition of <code>write_ppm</code> if you use an "array of arrays" to store your pixels. <strong>Be careful that you do not change the definition of ppm_pixel!</strong></p>
+</div>
+<div class="paragraph">
+<p>Then write a program, <code>glitch.c</code>, that reads in a PPM file and "glitches" it. Your program should save the modified PPM in a new file with the suffix "-glitch". For example, if you load in the file
+"monalisa.ppm", you should output a file named "monalisa-glitch.ppm".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ <strong>./glitch monalisa.ppm</strong>
+Reading monalisa.ppm with width 606 and height 771
+Writing file monalisa-glitch.ppm</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Original Image</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Glitched Image</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="img/monalisa.png" alt="monalisa" height="300px">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="img/monalisa-glitch-v2.0.png" alt="monalisa glitch v2.0" height="300">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Requirements/Hints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement a function to write your PPM as a <em>binary</em> file, e.g. with the option "wb".</p>
+</li>
+<li>
+<p>Use <code>fwrite</code> to write to your file.</p>
+</li>
+<li>
+<p>Save the result to <code>&lt;filename&gt;-glitch.ppm</code></p>
+</li>
+<li>
+<p>To start, implement a minimal glitch, which shifts each color value by either 1 or 2 bits, choosen at random, e.g. <code>newcolorvalue = oldcolorvalue &lt;&lt; (rand() % 2);</code>. Your result should look like</p>
+</li>
+<li>
+<p>Submit your glitched images as part of your submission!</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Original Image</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Result of random bit shift</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="img/monalisa.png" alt="monalisa" height="300px">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="img/monalisa-glitch-simple.png" alt="monalisa glitch simple" height="300">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Feel free to be creative with your glitches. You can use a combination of bit operations, switching colors, adding colors, etc.  Anything goes! Also, feel free to use your own images. PPM images can be exported using <a href="https://www.gimp.org">Gimp</a> or Photoshop.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_submit_your_work">5. Submit your work</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Push you work to github to submit your work.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ cd A01
+$ git status
+$ git add *.c
+$ git status
+$ git commit -m "assignment complete"
+$ git status
+$ git push
+$ git status</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2022-08-12 13:24:29 -0400
+</div>
+</div>
+</body>
+</html>

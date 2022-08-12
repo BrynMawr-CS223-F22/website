@@ -1,0 +1,164 @@
+include::header.adoc[]
+
+:title: Assignment 8: Hold on to your memories
+:Author Initials: ASN
+:Date:    2020-08-15
+:Revision: 0.1
+:stem: latexmath
+
+= {title}
+
+Due Thursday, , before midnight
+
+The goals for this assignment are:
+
+* More linked list practice
+* Work with void* types and pointer arithmetic
+* Better understand malloc and free, particularly the use of the free list
+* Understand how fragmentation can occur when re-using memory
+
+:sectnums:
+
+= Description
+
+In this assignment, we will compare and contrast different implementations of malloc and free. 
+
+For this assignment, you should submit both 
+
+* your code, and
+* a brief report, as a README.adoc file 
+
+Both should be checked into github. `adoc` is an Asciidoctor file. link:https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[Click here for a reference].
+
+= Code setup
+
+Your basecode includes the following source files
+
+* `benchmark1.c` - Benchmark program that generates random, uniform memory requests
+* `benchmark2.c` - A more realistic benchmark program
+* `rand.c` - Utilities for generating random sizes of memory
+* `sbrk.c` - Replaces sbrk with a version based on mmap 
+* `mylloc_list.c` - Malloc/free implementation that implements a free list with first-fit strategy (corresponds to `mhysa.c` in reading)
+
+NOTE: This assignment is based on the reading: "My malloc: mylloc and mhysa" by
+Johan Montelius, posted to Slack. You should complete the reading and finish the
+implementation of `mylloc_list.c` _before_ starting the assignment. 
+
+= README
+
+In your README.adoc, under the section "Hardware specification", answer the following questions:
+
+. Where did your run your tests? A laptop, or goldengate?
+. What are the performance specifications of the machine: number and speed of processors, size of RAM? (use `lscpu` and `free -m`)
+
+= Allocations
+
+In this question, you will analyze the allocations made by `mylloc_list.c`.
+
+[discrete]
+== Simple
+
+Write a program, `print.c`, that 
+
+. calls `sbrk(0)`
+. prints the initial top of the heap
+. calls `sbrk(0)` again. 
+. prints the new top of the heap allong with the increase in bytes (not kBytes!).
+
+[source]
+----
+$ ./print
+The initial top of the heap is 0x7fb924cb1000.
+The current top of the heap is 0x7fb924cb1410.
+Increased by 1040 (0x410) bytes
+----
+
+In your README.adoc, under the heading "Allocations", answer the following questions: 
+
+. Where does the increase in 1040 bytes come from?
+. Why is the value 1040 bytes?
+
+[discrete]
+== Reallocate
+
+Write a program, `reallocate.c`, that repeatedly malloc and frees 100 bytes of memory. 
+Your program should contain a loop that mallocs and frees at least 10 times.
+
+In the section titled "Allocations" in your document, answer the following question:
+
+. How many bytes does mylloc_list allocate when the program ends? In your document, explain why this amount makes sense.
+
+= Fragmentation
+
+//In this question, you will compare the amount of _internal_ and _external_ fragmentation that occurs when you use different block-selection strategies:
+//
+//* first-fit: use the first block that's large enough to accomodate the request
+//* worst-fit: use the largest block to accomodate the request 
+//* best-fit: use the smallest block that can accomodate the request
+
+In this question, you will analyze the unused memory that occurs when we use a first-fit strategy.
+You will need to make the following changes to `mylloc_list.c`
+
+* To keep track of your fragmentation, extend the record `struct chunk` to keep track of both the size of 
+the chunk and the amount of memory currently in use by the chunk. For example, suppose you allocate a 
+chunk with size 128 bytes but later re-use the chunk for 96 bytes of data. The size of the chunk is 128 
+but the amount in-use is 96.
+//* Add an option to `mylloc_list.c` to change the strategy for choosing chunks. The reading uses first-fit. 
+* Implement the function, `fragstats(void** buffers, int len)` located in `mylloc_list.c`, that computes
+** the total number of free chunks allocated 
+** the total number of in-use chunks allocated 
+** the largest, smallest, and average unused memory across all used chunks
+** the total unused memory across all used chunks
+** the largest, smallest, and average sizes of all free chunks 
+
+NOTE: In `fragstats`, `buffers` contains the memory chunks that are currently being used. `flist` contains the memory chunks that are not currently in use.
+
+[source]
+----
+The initial top of the heap is 0x7f9b72266000.
+Total blocks: 143 Free: 85 Used: 58
+Internal unused: total: 95635 average: 1648.0 smallest: 6 largest: 3805
+External unused: total: 235487 average: 2770.0 smallest: 151 largest: 3999
+0
+The current top of the heap is 0x7f9b722d7e00.
+Increased by 455 (0x1c7) Kbyte
+Total blocks: 150 Free: 96 Used: 54
+Internal unused: total: 98140 average: 1817.0 smallest: 32 largest: 3898
+External unused: total: 280774 average: 2924.0 smallest: 151 largest: 3999
+1
+The current top of the heap is 0x7f9b722debb4.
+Increased by 482 (0x1e2) Kbyte
+Total blocks: 154 Free: 102 Used: 52
+Internal unused: total: 100518 average: 1933.0 smallest: 376 largest: 3961
+External unused: total: 302622 average: 2966.0 smallest: 151 largest: 3999
+2
+The current top of the heap is 0x7f9b722e2a6e.
+Increased by 498 (0x1f2) Kbyte
+Total blocks: 156 Free: 104 Used: 52
+Internal unused: total: 102407 average: 1969.0 smallest: 18 largest: 3895
+External unused: total: 311165 average: 2991.0 smallest: 151 largest: 3999
+----
+
+NOTE: Above, "internal unused" analyzes the unused memory in `buffers`; "external unused" analyzes unused memory in `free list`
+
+In README.adoc, under the section titled "Fragmentation" in your document, answer the folowing questions:
+
+. What is fragmentation? What is the difference between internal and external fragmentation?
+. Include your output in the README.adoc
+
+= Submit your work
+
+Submit both your code *and* a brief report containing your results in your README.
+
+1) Push your code work to github
+
+[source]
+----
+$ git status
+$ git add . 
+$ git status
+$ git commit -m "assignment complete"
+$ git status
+$ git push
+$ git status
+----

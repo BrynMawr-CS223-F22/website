@@ -1,0 +1,143 @@
+
+
+[cols="1,2,6a", options="header"]
+|===
+| Week 
+| Date 
+| Agenda
+
+//-----------------------------
+| 1
+| Aug 30, Sept 1 anchor:week01[]
+| *Hello C* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 1] 
+* link:assts/asst00.html[Assignment 00]
+* link:http://linuxcommand.org/lc3_learning_the_shell.php[Learning the shell]
+* Topics: Programming at the command line, From Java to C 
+* Lab: SSH and Github
+
+//-----------------------------
+| 2 
+| Sep 6,8 anchor:week02[]
+| *Pointers* 
+
+* Topics: Function stacks, scope, dynamically-allocated memory (malloc/free), heap
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 2] 
+* link:assts/asst01.html[Assignment 01]
+* link:https://pythontutor.com/c.html#mode=edit[C Tutor]
+* Lab: Github Workshop
+// TODO * link:https://github.com/BrynMawr-CS223-F22/git-workshop[Github workshop] and link:https://github.com/BrynMawr-CS223-S22/git-workshop/blob/main/SSHSetup.md[Setting up SSH keys for Github]
+
+//-----------------------------
+|3
+|Sep 13,15 anchor:week03[]
+|*Debugging* 
+
+* Topics: GDB, Valgrind, Pointer-based data structures, More I/O
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 3] 
+* Read: link:http://svslibrary.pbworks.com/f/Data+Structures+and+Algorithm+Analysis+in+C+-+Mark+Allen+Weiss.pdf[Data Structures in C, Mark Allen Weiss, Chpt 3 and 4]
+* link:assts/asst02.html[Assignment 02]
+* Lab: Editor Workshop
+
+//-----------------------------
+|4
+|Sep 20,22 anchor:week04[]
+|*Binary and Data Representation I* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 4.1-4.3] 
+* link:assts/asst03.html[Assignment 03]
+* Lab: **Code Jam 01**, link:studyguide1.html[Study Guide]
+
+//-----------------------------
+|5
+|Oct 4,6 anchor:week05[]
+|*Binary and Data Representation II* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 4.4-4.9] 
+* link:assts/asst04.html[Assignment 04]
+* Lab: **Jam Redux 01**
+
+//-----------------------------
+|6
+|Oct 11,13 anchor:week06[]
+|*Fall Break*
+
+* *NO LECTURES, LABS, HOMEWORKS*
+
+//-----------------------------
+|7
+|Oct 18,20 anchor:week07[]
+|*Computer architecture, Assembly* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Section 5.1, Chapter 6] 
+* link:assts/asst05.html[Assignment 05]
+* Lab: **Code Jam 02**, link:studyguide2.html[Study Guide 2]
+
+//-----------------------------
+|8
+|Oct 25,27 anchor:week08[]
+|*Assembly* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 7 (7.1-7.3,7.5,7.10), 10] 
+* link:assts/asst06.html[Assignment 06]
+* Lab: **Jam 02 Redux**
+
+//-----------------------------
+|9
+|Nov 1,3, anchor:week09[]
+|*Memory I* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 11.1-11.3] 
+* Lab: **Jam 03**: link:studyguide3.html[Study Guide 3]
+
+//-----------------------------
+|10
+|Nov 8,10 anchor:week10[]
+|*Memory II*
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 11.5, Malloc Handout] 
+* link:assts/asst07.html[Assignment 07]
+* Lab: **Jam 03 Redux**
+
+//-----------------------------
+|11
+|Nov 15,17 anchor:week11[]
+|*The operating system* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 13, skip section 13.3] 
+* **Jam 04**: Mar 31 link:studyguide4.html[Study Guide 4]
+* link:assts/asst08.html[Assignment 08]
+
+//-----------------------------
+|12
+|Nov 22 anchor:week12[]
+|*Inter-process communication, Threads I* 
+
+* *No class Thursday, Nov 24 (Thanksgiving)*
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 13.4-13.6, Chapter 14] 
+* link:assts/asst09.html[Assignment 09]: Part 1 due April 8
+* **Jam 04 Redux**
+
+//-----------------------------
+|13
+|Nov 29,31 anchor:week13[]
+|*Threads* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 14] 
+* link:assts/asst09.html[Assignment 09]: Part 2 due April 15
+* Lab will be office hours
+
+//-----------------------------
+|14
+|Dec 6,8 anchor:week14[]
+|*Code Optimization* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 12] 
+* link:assts/asst10.html[Assignment 10]
+* Lab: **Jam 05**, link:studyguide5.html[Study Guide 5]
+* link:studyguide-final.html[Final Study Guide]
+
+|===
+
+

@@ -40,6 +40,8 @@ You can also use Slack to talk directly to me and the TAs, or even to each other
 Please go to github.com and register. We will use github for assignments.  *Email
 the instructor (anormoyle at brynmawr.edu) with your github username.* 
 
+*You will need to setup an SSH key for Github. link:https://docs.github.com/en/authentication/connecting-to-github-with-ssh[Click here for instructions].
+
 We have made the decision to open-source our assignments and projects for this 
 class. The benefit of this decision is that you will have a portfolio of work that 
 you can easily keep and share.

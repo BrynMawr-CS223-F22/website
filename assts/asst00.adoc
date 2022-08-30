@@ -76,7 +76,7 @@ machine if you have setup your development environment there.
 
 Fork the repository from here: 
 
-link:https://github.com/BrynMawr-CS223-S22/assignments[]
+link:https://github.com/BrynMawr-CS223-F22/assignments[]
 
 [discrete]
 == Clone the repository

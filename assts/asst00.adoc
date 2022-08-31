@@ -78,13 +78,26 @@ Fork the repository from here:
 
 link:https://github.com/BrynMawr-CS223-F22/assignments[]
 
+Fork is a button located on the top, right on Github.
+
 [discrete]
 == Clone the repository
 
-From _your own account_, clone the resitory you just forked. The URL should look 
+From _your own account_, clone the repository you just forked. The URL should look 
 something like the following
 
-link:https://github.com/<YOURUSERNAME>/assignments[]
+[source]
+----
+git@github.com:<YOURUSERNAME>/assignments[]
+----
+
+Use the "Code" button on Github to copy the URL. Then run the following command
+from terminal.
+
+[source]
+----
+git clone git@github.com:<YOURUSERNAME>/assignments[]
+----
 
 This will download a local account of the repository to your computer.
 
@@ -106,8 +119,6 @@ Hello World
 In the directory, `A00`, 
 
 * implement a new program, `fortune.c` that modifies `hello.c` to print a fortune of your choosing. 
-* add a rule to the Makefile to compile your program to an executable named `fortune`
-
 Your program should compile and run like so:
 
 [source]
@@ -121,6 +132,7 @@ A journey of a thousand miles begins with a single step.
 == Submit your work
 
 Add and check in your program using git and then push your changes to Github. 
+Run the following command inside your `A00` directory.
 
 [source]
 ----

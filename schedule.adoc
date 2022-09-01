@@ -11,7 +11,7 @@
 | Aug 30, Sept 1 anchor:week01[]
 | *Hello C* 
 
-* Read: link:https://diveintosystems.org/singlepage/[Chapter 1] 
+* Read: link:https://diveintosystems.org/singlepage/[Appendix 1] 
 * link:assts/asst00.html[Assignment 00]
 * link:http://linuxcommand.org/lc3_learning_the_shell.php[Learning the shell]
 * Topics: Programming at the command line, From Java to C 

@@ -15,9 +15,9 @@
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_assignment_1_learn_to_c">Assignment 1: Learn to C!</a></li>
-<li><a href="#_bad_password">1. Bad password</a></li>
-<li><a href="#_snackbar">2. Snackbar</a></li>
-<li><a href="#_rock_paper_scissors">3. Rock, paper, scissors</a></li>
+<li><a href="#_shift_cypher">1. Shift Cypher</a></li>
+<li><a href="#_restaurants">2. Restaurants</a></li>
+<li><a href="#_wordle">3. Wordle</a></li>
 <li><a href="#_submit_your_work">4. Submit your Work</a></li>
 </ul>
 </div>
@@ -45,92 +45,85 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bad_password">1. Bad password</h2>
+<h2 id="_shift_cypher">1. Shift Cypher</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Write a program, <code>password.c</code>, that asks the user for a word and creates a bad password from it.
-You can assume that all characters are lowercase.</p>
+<p>Write a program, <code>cypher.c</code>, that asks the user for a word and then encodes it using a shift cypher. A shift cypher replaces each letter with a letter that is X positions from it in the alphabet. For example, is the letter is 'a' and the shift is 2, we replace 'a' with a 'c'. You can assume that all inputs are lowercase and do not contain special characters.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ <strong>make password</strong>
-gcc password.c -o password
-$ <strong>./password</strong>
+<pre class="highlight"><code>$ <strong>make cypher</strong>
+gcc cypher.c -o cypher
+$ <strong>./cypher</strong>
 Enter a word: <strong>elephant</strong>
-Your bad password is 313ph@nt
-$ <strong>./password</strong>
-Enter a word: <strong>hello</strong>
-Your bad password is h311o
-$ <strong>./password</strong>
-Enter a word: <strong>rhythm</strong>
-Your bad password is rhythm</code></pre>
+Enter a shift: <strong>2</strong>
+Your cypher is gngrjcpv
+$ <strong>./cypher </strong>
+Enter a word: <strong>gngrjcpv</strong>
+Enter a shift: <strong>-2</strong>
+Your cypher is <strong>elephant
+$ </strong>./cypher <strong>
+Enter a word: </strong>hello<strong>
+Enter a shift: </strong>7<strong>
+Your cypher is olssv
+$ </strong>./cypher <strong>
+Enter a word: </strong>a<strong>
+Enter a shift: </strong>-2<strong>
+Your cypher is y
+$ </strong>./cypher <strong>
+Enter a word: </strong>z<strong>
+Enter a shift: </strong>2**
+Your cypher is b</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Your bad password algorithm should</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Replace 'e&#8217;s with '3&#8217;s</p>
-</li>
-<li>
-<p>Replace 'l&#8217;s with '1&#8217;s</p>
-</li>
-<li>
-<p>Replace 'a&#8217;s with '@'s</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_snackbar">2. Snackbar</h2>
+<h2 id="_restaurants">2. Restaurants</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Write a program, <code>snackbar.c</code>, that maintains a list of snacks available for purchase.</p>
+<p>Write a program, <code>restaurants.c</code>, that maintains a list of restaurants.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ <strong>make snackbar</strong>
-gcc snackbar.c -o snackbar
+<pre class="highlight"><code>$ <strong>make restaurants</strong>
+gcc restaurants.c -o restaurants
 
-$ <strong>./snackbar</strong>
-Welcome to Steven Struct's Snack Bar.
+$ <strong>./restaurants</strong>
+Welcome to Steven Struct's Restarant List.
 
-How much money do you have? <strong>5</strong>
+What hour is it (24 hr clock)? <strong>10</strong>
 
-0) Coco Puffs           cost: $1.50     quantity: 4
-1) Manchego cheese      cost: $15.50    quantity: 6
-2) Magic beans          cost: $0.50     quantity: 0
+0) Sushi Atsumi         open: 11:00     close: 23:00    stars: 3.5
+1) The Thirsty Horse    open: 17:00     close: 02:00    stars: 4.5
+2) Magic Bean Coffee    open: 06:00     close: 15:00    stars: 4.1
 
-What snack would you like to buy? [0,1,2] <strong>1</strong>
-You can't afford it!
+What restaurant do you want to visit? [0,1,2] 2
+Excellent choice. Magic Bean Coffee will be open for 5 more hours
 
-$ <strong>./snackbar</strong>
-Welcome to Steven Struct's Snack Bar.
+$ <strong>./restaurants</strong>
+Welcome to Steven Struct's Restarant List.
 
-How much money do you have? <strong>5</strong>
+What hour is it (24 hr clock)? <strong>10</strong>
 
-0) Coco Puffs           cost: $1.50     quantity: 4
-1) Manchego cheese      cost: $15.50    quantity: 6
-2) Magic beans          cost: $0.50     quantity: 0
+0) Sushi Atsumi         open: 11:00     close: 23:00    stars: 3.5
+1) The Thirsty Horse    open: 17:00     close: 02:00    stars: 4.5
+2) Magic Bean Coffee    open: 06:00     close: 15:00    stars: 4.1
 
-What snack would you like to buy? [0,1,2] <strong>2</strong>
-Sorry, we are out of Magic beans
+What restaurant do you want to visit? [0,1,2] 0
+Sushi Atsumi isn't open until 11 o'clock!!
 
-$ <strong>./snackbar</strong>
-Welcome to Steven Struct's Snack Bar.
+$ <strong>./restaurants</strong>
+Welcome to Steven Struct's Restarant List.
 
-How much money do you have? <strong>5</strong>
+What hour is it (24 hr clock)? <strong>3</strong>
 
-0) Coco Puffs           cost: $1.50     quantity: 4
-1) Manchego cheese      cost: $15.50    quantity: 6
-2) Magic beans          cost: $0.50     quantity: 0
+0) Sushi Atsumi         open: 11:00     close: 23:00    stars: 3.5
+1) The Thirsty Horse    open: 17:00     close: 02:00    stars: 4.5
+2) Magic Bean Coffee    open: 06:00     close: 15:00    stars: 4.1
 
-What snack would you like to buy? [0,1,2] <strong>0</strong>
-You bought Coco Puffs
-You have $3.50 left</code></pre>
+What restaurant do you want to visit? [0,1,2] 1
+The Thirsty Horse closed at 2 o'clock!!</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -139,7 +132,7 @@ You have $3.50 left</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Your program should define a <code>struct snack</code> that stores a name, cost, and quantity</p>
+<p>Your program should define a <code>struct restaurant</code> that stores a name, opening hour (int), closing hour (int) and stars rating (float or double)</p>
 </li>
 <li>
 <p>Your program should define at least three snacks and store them in an array</p>
@@ -147,65 +140,44 @@ You have $3.50 left</code></pre>
 <li>
 <p>Your program should be similar to the given output but feel free to customize it!</p>
 </li>
+<li>
+<p>Your program should handle establishments that are open over midnight, like The Thirsty Horse.</p>
+</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_rock_paper_scissors">3. Rock, paper, scissors</h2>
+<h2 id="_wordle">3. Wordle</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Write a program, <code>rpc.c</code>, that implements the game [rock, paper, scissors](<a href="https://en.wikipedia.org/wiki/Rock_paper_scissors" class="bare">https://en.wikipedia.org/wiki/Rock_paper_scissors</a>).
-Your program should have an AI and human player. Each turn, each makes a choice and then wins a point based on the following rules</p>
+<p>Write a program, <code>wordle.c</code>, that implements the game
+<a href="https://wordlewebsite.com">Wordle</a>. Your program should choose a
+random 5-letter word from a list and then give the user 6 tries to
+guess the word. Each guess, your program should tell the user what letters
+are</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Rock bashes scissors</p>
+<p>In the correct place</p>
 </li>
 <li>
-<p>Paper covers rock</p>
+<p>In the word, but in the wrong place</p>
 </li>
 <li>
-<p>Scissors cut paper</p>
+<p>Not in the word</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ <strong>make rpc</strong>
-gcc rpc.c -o rpc
-$ <strong>./rpc</strong>
-Welcome to Rock, Paper, Scissors!
-How many rounds do you want to play? <strong>6</strong>
+<pre class="highlight"><code>$ <strong>make wordle</strong>
+gcc wordle.c -o wordle
+$ <strong>./wordle</strong>
+Welcome to Wordle!
 
-Which do you choose? rock, paper, or scissors? <strong>nope</strong>
-AI chose scissors
-You entered an invalid choice: nope
-AI score: 0, Player score: 0
-
-Which do you choose? rock, paper, or scissors? <strong>rock</strong>
-AI chose scissors
-Rock bashes scissors
-AI score: 0, Player score: 1
-
-Which do you choose? rock, paper, or scissors? <strong>paper</strong>
-AI chose paper
-AI score: 0, Player score: 1
-
-Which do you choose? rock, paper, or scissors? <strong>paper</strong>
-AI chose rock
-Paper covers sock
-AI score: 0, Player score: 2
-
-Which do you choose? rock, paper, or scissors? <strong>scissors</strong>
-AI chose scissors
-AI score: 0, Player score: 2
-
-Which do you choose? rock, paper, or scissors? <strong>scissors</strong>
-AI chose scissors
-AI score: 0, Player score: 2
-Player wins!</code></pre>
+You guessed it!</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -217,16 +189,13 @@ Player wins!</code></pre>
 <p>Your program should implement at least one function. Try to keep your program DRY (e.g. Don&#8217;t Repeat Yourself!)</p>
 </li>
 <li>
-<p>Use the <code>rand()</code> function (defined in <code>stdlib.h</code>) to make the AI&#8217;s choice. If the choice is 0, interpret it as "rock"; 1 as "paper"; and 2 as "scissors".</p>
-</li>
-<li>
-<p>Use the <code>strcmp</code> function (defined in <code>string.h</code>) to compare the player&#8217;s choice against either rock, paper, or scissors.</p>
+<p>Use the <code>rand()</code> function (defined in <code>stdlib.h</code>) to choose a random word from the pre-defined variable words.</p>
 </li>
 <li>
 <p>Your output should be similar to the sample output, although you can customize it!</p>
 </li>
 <li>
-<p>You can assume the user enters an integer for the number of rounds</p>
+<p>Your program should print out whether the user guessed the word correctly or not. If the user doesn&#8217;t guess the word, you should tell the user the word.</p>
 </li>
 </ul>
 </div>
@@ -268,7 +237,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-23 09:51:30 -0400
+Last updated 2022-09-06 12:43:34 -0400
 </div>
 </div>
 </body>

@@ -13,7 +13,7 @@ include::header.adoc[]
 Instructor: link:https://www.cs.brynmawr.edu/~alinen[Aline Normoyle]
 
 [.anns]
-* Current Agenda: link:#week01[Week1]
+* Current Agenda: link:#week02[Week2]
 
 == Course Info
 

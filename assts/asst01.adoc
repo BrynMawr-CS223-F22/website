@@ -16,138 +16,117 @@ The goals for this assignment are:
 
 :sectnums:
 
-= Bad password
+= Shift Cypher
 
-Write a program, `password.c`, that asks the user for a word and creates a bad password from it.
-You can assume that all characters are lowercase.
+Write a program, `cypher.c`, that asks the user for a word and then encodes it using a shift cypher. A shift cypher replaces each letter with a letter that is X positions from it in the alphabet. For example, is the letter is 'a' and the shift is 2, we replace 'a' with a 'c'. You can assume that all inputs are lowercase and do not contain special characters.  
 
 [source,subs="quotes"]
 ----
-$ **make password**
-gcc password.c -o password
-$ **./password**
+$ **make cypher**
+gcc cypher.c -o cypher
+$ **./cypher**
 Enter a word: **elephant**
-Your bad password is 313ph@nt
-$ **./password**
+Enter a shift: **2**
+Your cypher is gngrjcpv
+$ **./cypher **
+Enter a word: **gngrjcpv**
+Enter a shift: **-2**
+Your cypher is **elephant
+$ **./cypher **
 Enter a word: **hello**
-Your bad password is h311o
-$ **./password**
-Enter a word: **rhythm**
-Your bad password is rhythm
+Enter a shift: **7**
+Your cypher is olssv
+$ **./cypher **
+Enter a word: **a**
+Enter a shift: **-2**
+Your cypher is y
+$ **./cypher **
+Enter a word: **z**
+Enter a shift: **2**
+Your cypher is b
 ----
 
-Your bad password algorithm should
+= Restaurants
 
-* Replace 'e's with '3's
-* Replace 'l's with '1's
-* Replace 'a's with '@'s
-
-= Snackbar
-
-Write a program, `snackbar.c`, that maintains a list of snacks available for purchase.
+Write a program, `restaurants.c`, that maintains a list of restaurants. 
 
 [source,subs="quotes"]
 ----
-$ **make snackbar**
-gcc snackbar.c -o snackbar
+$ **make restaurants**
+gcc restaurants.c -o restaurants
 
-$ **./snackbar**
-Welcome to Steven Struct's Snack Bar.
+$ **./restaurants**
+Welcome to Steven Struct's Restarant List.
 
-How much money do you have? **5**
+What hour is it (24 hr clock)? **10**
 
-0) Coco Puffs           cost: $1.50     quantity: 4
-1) Manchego cheese      cost: $15.50    quantity: 6
-2) Magic beans          cost: $0.50     quantity: 0
+0) Sushi Atsumi         open: 11:00     close: 23:00    stars: 3.5
+1) The Thirsty Horse    open: 17:00     close: 02:00    stars: 4.5
+2) Magic Bean Coffee    open: 06:00     close: 15:00    stars: 4.1
 
-What snack would you like to buy? [0,1,2] **1**
-You can't afford it!
+What restaurant do you want to visit? [0,1,2] 2
+Excellent choice. Magic Bean Coffee will be open for 5 more hours
 
-$ **./snackbar**
-Welcome to Steven Struct's Snack Bar.
+$ **./restaurants**
+Welcome to Steven Struct's Restarant List.
 
-How much money do you have? **5**
+What hour is it (24 hr clock)? **10**
 
-0) Coco Puffs           cost: $1.50     quantity: 4
-1) Manchego cheese      cost: $15.50    quantity: 6
-2) Magic beans          cost: $0.50     quantity: 0
+0) Sushi Atsumi         open: 11:00     close: 23:00    stars: 3.5
+1) The Thirsty Horse    open: 17:00     close: 02:00    stars: 4.5
+2) Magic Bean Coffee    open: 06:00     close: 15:00    stars: 4.1
 
-What snack would you like to buy? [0,1,2] **2**
-Sorry, we are out of Magic beans
+What restaurant do you want to visit? [0,1,2] 0
+Sushi Atsumi isn't open until 11 o'clock!!
 
-$ **./snackbar**
-Welcome to Steven Struct's Snack Bar.
+$ **./restaurants**
+Welcome to Steven Struct's Restarant List.
 
-How much money do you have? **5**
+What hour is it (24 hr clock)? **3**
 
-0) Coco Puffs           cost: $1.50     quantity: 4
-1) Manchego cheese      cost: $15.50    quantity: 6
-2) Magic beans          cost: $0.50     quantity: 0
+0) Sushi Atsumi         open: 11:00     close: 23:00    stars: 3.5
+1) The Thirsty Horse    open: 17:00     close: 02:00    stars: 4.5
+2) Magic Bean Coffee    open: 06:00     close: 15:00    stars: 4.1
 
-What snack would you like to buy? [0,1,2] **0**
-You bought Coco Puffs
-You have $3.50 left
+What restaurant do you want to visit? [0,1,2] 1
+The Thirsty Horse closed at 2 o'clock!!
 ----
 
 Requirements:
 
-* Your program should define a `struct snack` that stores a name, cost, and quantity 
+* Your program should define a `struct restaurant` that stores a name, opening hour (int), closing hour (int) and stars rating (float or double) 
 * Your program should define at least three snacks and store them in an array
 * Your program should be similar to the given output but feel free to customize it!
+* Your program should handle establishments that are open over midnight, like The Thirsty Horse.
 
-= Rock, paper, scissors
+= Wordle
 
-Write a program, `rpc.c`, that implements the game [rock, paper, scissors](https://en.wikipedia.org/wiki/Rock_paper_scissors).
-Your program should have an AI and human player. Each turn, each makes a choice and then wins a point based on the following rules
+Write a program, `wordle.c`, that implements the game 
+link:https://wordlewebsite.com[Wordle]. Your program should choose a 
+random 5-letter word from a list and then give the user 6 tries to 
+guess the word. Each guess, your program should tell the user what letters 
+are 
 
-* Rock bashes scissors
-* Paper covers rock
-* Scissors cut paper
+* In the correct place
+* In the word, but in the wrong place
+* Not in the word
 
 [source,subs="quotes"]
 ----
-$ **make rpc**
-gcc rpc.c -o rpc
-$ **./rpc**
-Welcome to Rock, Paper, Scissors!
-How many rounds do you want to play? **6**
+$ **make wordle**
+gcc wordle.c -o wordle
+$ **./wordle**
+Welcome to Wordle!
 
-Which do you choose? rock, paper, or scissors? **nope**
-AI chose scissors
-You entered an invalid choice: nope
-AI score: 0, Player score: 0
-
-Which do you choose? rock, paper, or scissors? **rock**
-AI chose scissors
-Rock bashes scissors
-AI score: 0, Player score: 1
-
-Which do you choose? rock, paper, or scissors? **paper**
-AI chose paper
-AI score: 0, Player score: 1
-
-Which do you choose? rock, paper, or scissors? **paper**
-AI chose rock
-Paper covers sock
-AI score: 0, Player score: 2
-
-Which do you choose? rock, paper, or scissors? **scissors**
-AI chose scissors
-AI score: 0, Player score: 2
-
-Which do you choose? rock, paper, or scissors? **scissors**
-AI chose scissors
-AI score: 0, Player score: 2
-Player wins!
+You guessed it!
 ----
 
 Requirements and hints:
 
 * Your program should implement at least one function. Try to keep your program DRY (e.g. Don't Repeat Yourself!)
-* Use the `rand()` function (defined in `stdlib.h`) to make the AI's choice. If the choice is 0, interpret it as "rock"; 1 as "paper"; and 2 as "scissors". 
-* Use the `strcmp` function (defined in `string.h`) to compare the player's choice against either rock, paper, or scissors.
+* Use the `rand()` function (defined in `stdlib.h`) to choose a random word from the pre-defined variable words.
 * Your output should be similar to the sample output, although you can customize it!
-* You can assume the user enters an integer for the number of rounds
+* Your program should print out whether the user guessed the word correctly or not. If the user doesn't guess the word, you should tell the user the word. 
 
 NOTE: The code `srand(time(0));` sets up the `rand()` function to produce different random numbers every time you run the program. 
 Comment this line out, to run with the same random numbers. This can be useful for testing.

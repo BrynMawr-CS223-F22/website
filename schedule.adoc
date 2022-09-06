@@ -15,7 +15,7 @@
 * link:assts/asst00.html[Assignment 00]
 * link:http://linuxcommand.org/lc3_learning_the_shell.php[Learning the shell]
 * Topics: Programming at the command line, From Java to C 
-* Lab: SSH and Github
+* Lab: SSH and Github setup
 
 //-----------------------------
 | 2 
@@ -26,8 +26,7 @@
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 2] 
 * link:assts/asst01.html[Assignment 01]
 * link:https://pythontutor.com/c.html#mode=edit[C Tutor]
-* Lab: Github Workshop
-// TODO * link:https://github.com/BrynMawr-CS223-F22/git-workshop[Github workshop] and link:https://github.com/BrynMawr-CS223-S22/git-workshop/blob/main/SSHSetup.md[Setting up SSH keys for Github]
+* Lab: Editor Workshop
 
 //-----------------------------
 |3
@@ -38,7 +37,8 @@
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 3] 
 * Read: link:http://svslibrary.pbworks.com/f/Data+Structures+and+Algorithm+Analysis+in+C+-+Mark+Allen+Weiss.pdf[Data Structures in C, Mark Allen Weiss, Chpt 3 and 4]
 * link:assts/asst02.html[Assignment 02]
-* Lab: Editor Workshop
+* Lab: Github Workshop
+// TODO * link:https://github.com/BrynMawr-CS223-F22/git-workshop[Github workshop] and link:https://github.com/BrynMawr-CS223-S22/git-workshop/blob/main/SSHSetup.md[Setting up SSH keys for Github]
 
 //-----------------------------
 |4
@@ -86,28 +86,30 @@
 //-----------------------------
 |9
 |Nov 1,3, anchor:week09[]
-|*Memory I* 
+|*Memory* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 11.1-11.3] 
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 11.5, Malloc Handout] 
+* link:assts/asst07.html[Assignment 07]
 * Lab: **Jam 03**: link:studyguide3.html[Study Guide 3]
 
 //-----------------------------
 |10
 |Nov 8,10 anchor:week10[]
-|*Memory II*
+|*The operating system* 
 
-* Read: link:https://diveintosystems.org/singlepage/[Chapter 11.5, Malloc Handout] 
-* link:assts/asst07.html[Assignment 07]
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 13, skip section 13.3] 
+* link:assts/asst08.html[Assignment 08]
 * Lab: **Jam 03 Redux**
 
 //-----------------------------
 |11
 |Nov 15,17 anchor:week11[]
-|*The operating system* 
+|
 
-* Read: link:https://diveintosystems.org/singlepage/[Chapter 13, skip section 13.3] 
-* **Jam 04**: Mar 31 link:studyguide4.html[Study Guide 4]
-* link:assts/asst08.html[Assignment 08]
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 13.4-13.6, Chapter 14] 
+* link:assts/asst09.html[Assignment 09]: Due Dec 1 
+* Lab will be office hours
 
 //-----------------------------
 |12
@@ -115,9 +117,7 @@
 |*Inter-process communication, Threads I* 
 
 * *No class Thursday, Nov 24 (Thanksgiving)*
-* Read: link:https://diveintosystems.org/singlepage/[Chapter 13.4-13.6, Chapter 14] 
-* link:assts/asst09.html[Assignment 09]: Part 1 due April 8
-* **Jam 04 Redux**
+* **Jam 04**: link:studyguide4.html[Study Guide 4]
 
 //-----------------------------
 |13
@@ -125,8 +125,8 @@
 |*Threads* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 14] 
-* link:assts/asst09.html[Assignment 09]: Part 2 due April 15
-* Lab will be office hours
+* link:assts/asst10.html[Assignment 10]
+* **Jam 04 Redux**
 
 //-----------------------------
 |14
@@ -134,7 +134,6 @@
 |*Code Optimization* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 12] 
-* link:assts/asst10.html[Assignment 10]
 * Lab: **Jam 05**, link:studyguide5.html[Study Guide 5]
 * link:studyguide-final.html[Final Study Guide]
 

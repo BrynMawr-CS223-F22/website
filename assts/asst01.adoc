@@ -16,9 +16,31 @@ The goals for this assignment are:
 
 :sectnums:
 
+= Update your repository
+
+Do a *fetch upstream* to obtain the basecode for this assignment. 
+
+Using the command line
+
+* Open terminal and change your current directory to your assignment repository.
+* Run the command `git remote add upstream git@github.com:brynmawr-cs223-f22/assignments.git`
+* Run the command `git fetch upstream`
+* Run the command `git merge upstream/main`
+
+Your repository should now contain a new folder named `A01`.
+
+The command `git remote add upstream` links your fork with the original repository. We 
+only need to do this step once.
+
+The `fetch` and `merge` commands update your repository with any changes from the original.
+
 = Shift Cypher
 
-Write a program, `cypher.c`, that asks the user for a word and then encodes it using a shift cypher. A shift cypher replaces each letter with a letter that is X positions from it in the alphabet. For example, is the letter is 'a' and the shift is 2, we replace 'a' with a 'c'. You can assume that all inputs are lowercase and do not contain special characters.  
+Write a program, `cypher.c`, that asks the user for a word and then encodes it
+using a shift cypher. A shift cypher replaces each letter with a letter that is
+X positions from it in the alphabet. For example, is the letter is 'a' and the
+shift is 2, we replace 'a' with a 'c'. You can assume that all inputs are
+lowercase and do not contain special characters.  
 
 [source,subs="quotes"]
 ----
@@ -45,6 +67,10 @@ Enter a word: **z**
 Enter a shift: **2**
 Your cypher is b
 ----
+
+Hints:
+
+* Recall that characters as represented as digits in ASCII. A straight-forward implementation can add offsets to each character of the word. 
 
 = Restaurants
 
@@ -114,22 +140,100 @@ are
 [source,subs="quotes"]
 ----
 $ **make wordle**
-gcc wordle.c -o wordle
 $ **./wordle**
 Welcome to Wordle!
+Please enter a 5-letter word: human
+h is NOT in the word.
+u is NOT in the word.
+m is in the word (but not in the correct spot)!
+a is in the word (but not in the correct spot)!
+n is NOT in the word.
+Please enter a 5-letter word: manic
+m is in the word AND in the correct spot!
+a is in the word AND in the correct spot!
+n is NOT in the word.
+i is NOT in the word.
+c is in the word (but not in the correct spot)!
+Please enter a 5-letter word: maces
+m is in the word AND in the correct spot!
+a is in the word AND in the correct spot!
+c is in the word (but not in the correct spot)!
+e is NOT in the word.
+s is NOT in the word.
+Please enter a 5-letter word: macro
+m is in the word AND in the correct spot!
+a is in the word AND in the correct spot!
+c is in the word (but not in the correct spot)!
+r is in the word (but not in the correct spot)!
+o is in the word AND in the correct spot!
+Please enter a 5-letter word: marco
+m is in the word AND in the correct spot!
+a is in the word AND in the correct spot!
+r is in the word AND in the correct spot!
+c is in the word AND in the correct spot!
+o is in the word AND in the correct spot!
+You guessed it! The word is marco
+----
 
-You guessed it!
+Here is another example:
+
+[source, subs="quotes"]
+----
+Welcome to Wordle!
+Please enter a 5-letter word: apple
+a is NOT in the word.
+p is NOT in the word.
+p is NOT in the word.
+l is in the word (but not in the correct spot)!
+e is in the word (but not in the correct spot)!
+Please enter 5-letter word: blues
+b is NOT in the word.
+l is in the word (but not in the correct spot)!
+u is NOT in the word.
+e is in the word (but not in the correct spot)!
+s is NOT in the word.
+Please enter a 5-letter word: monad
+m is NOT in the word.
+o is NOT in the word.
+n is NOT in the word.
+a is NOT in the word.
+d is NOT in the word.
+Please enter a 5-letter word: nomad
+n is NOT in the word.
+o is NOT in the word.
+m is NOT in the word.
+a is NOT in the word.
+d is NOT in the word.
+Please enter a 5-letter word: totem
+t is NOT in the word.
+o is NOT in the word.
+t is NOT in the word.
+e is in the word (but not in the correct spot)!
+m is NOT in the word.
+Please enter a 5-letter word: totem
+t is NOT in the word.
+o is NOT in the word.
+t is NOT in the word.
+e is in the word (but not in the correct spot)!
+m is NOT in the word.
+Sorry, you ran out of tries. The word is leigh
 ----
 
 Requirements and hints:
 
 * Your program should implement at least one function. Try to keep your program DRY (e.g. Don't Repeat Yourself!)
-* Use the `rand()` function (defined in `stdlib.h`) to choose a random word from the pre-defined variable words.
+* Use the `chooseWord()` function (defined in `words.h`) to choose a random word. Your basecode has this code in it already.
 * Your output should be similar to the sample output, although you can customize it!
 * Your program should print out whether the user guessed the word correctly or not. If the user doesn't guess the word, you should tell the user the word. 
+* Your program should give the user 6 tries to guess the word
+* For testing: print out the random word, or comment out the line `srand(time(0))` so that the same word is always chosen.
+* Your code MUST not use boolean types (vanilla C only!!)
 
-NOTE: The code `srand(time(0));` sets up the `rand()` function to produce different random numbers every time you run the program. 
-Comment this line out, to run with the same random numbers. This can be useful for testing.
+Feel free to implement bonus features:
+
+* Re-ask the user for a word if they enter something that is not 5 characters
+* Don't allow the user to enter words that contain characters that we know aren't in the word
+* Surprise us!
 
 = Submit your Work
 

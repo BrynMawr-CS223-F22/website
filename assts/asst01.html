@@ -15,10 +15,11 @@
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_assignment_1_learn_to_c">Assignment 1: Learn to C!</a></li>
-<li><a href="#_shift_cypher">1. Shift Cypher</a></li>
-<li><a href="#_restaurants">2. Restaurants</a></li>
-<li><a href="#_wordle">3. Wordle</a></li>
-<li><a href="#_submit_your_work">4. Submit your Work</a></li>
+<li><a href="#_update_your_repository">1. Update your repository</a></li>
+<li><a href="#_shift_cypher">2. Shift Cypher</a></li>
+<li><a href="#_restaurants">3. Restaurants</a></li>
+<li><a href="#_wordle">4. Wordle</a></li>
+<li><a href="#_submit_your_work">5. Submit your Work</a></li>
 </ul>
 </div>
 </div>
@@ -45,10 +46,51 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_shift_cypher">1. Shift Cypher</h2>
+<h2 id="_update_your_repository">1. Update your repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Write a program, <code>cypher.c</code>, that asks the user for a word and then encodes it using a shift cypher. A shift cypher replaces each letter with a letter that is X positions from it in the alphabet. For example, is the letter is 'a' and the shift is 2, we replace 'a' with a 'c'. You can assume that all inputs are lowercase and do not contain special characters.</p>
+<p>Do a <strong>fetch upstream</strong> to obtain the basecode for this assignment.</p>
+</div>
+<div class="paragraph">
+<p>Using the command line</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open terminal and change your current directory to your assignment repository.</p>
+</li>
+<li>
+<p>Run the command <code>git remote add upstream <a href="mailto:git@github.com">git@github.com</a>:brynmawr-cs223-f22/assignments.git</code></p>
+</li>
+<li>
+<p>Run the command <code>git fetch upstream</code></p>
+</li>
+<li>
+<p>Run the command <code>git merge upstream/main</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Your repository should now contain a new folder named <code>A01</code>.</p>
+</div>
+<div class="paragraph">
+<p>The command <code>git remote add upstream</code> links your fork with the original repository. We
+only need to do this step once.</p>
+</div>
+<div class="paragraph">
+<p>The <code>fetch</code> and <code>merge</code> commands update your repository with any changes from the original.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_shift_cypher">2. Shift Cypher</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Write a program, <code>cypher.c</code>, that asks the user for a word and then encodes it
+using a shift cypher. A shift cypher replaces each letter with a letter that is
+X positions from it in the alphabet. For example, is the letter is 'a' and the
+shift is 2, we replace 'a' with a 'c'. You can assume that all inputs are
+lowercase and do not contain special characters.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -76,10 +118,20 @@ Enter a shift: </strong>2**
 Your cypher is b</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Hints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Recall that characters as represented as digits in ASCII. A straight-forward implementation can add offsets to each character of the word.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_restaurants">2. Restaurants</h2>
+<h2 id="_restaurants">3. Restaurants</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Write a program, <code>restaurants.c</code>, that maintains a list of restaurants.</p>
@@ -148,7 +200,7 @@ The Thirsty Horse closed at 2 o'clock!!</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_wordle">3. Wordle</h2>
+<h2 id="_wordle">4. Wordle</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Write a program, <code>wordle.c</code>, that implements the game
@@ -173,11 +225,84 @@ are</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>$ <strong>make wordle</strong>
-gcc wordle.c -o wordle
 $ <strong>./wordle</strong>
 Welcome to Wordle!
-
-You guessed it!</code></pre>
+Please enter a 5-letter word: human
+h is NOT in the word.
+u is NOT in the word.
+m is in the word (but not in the correct spot)!
+a is in the word (but not in the correct spot)!
+n is NOT in the word.
+Please enter a 5-letter word: manic
+m is in the word AND in the correct spot!
+a is in the word AND in the correct spot!
+n is NOT in the word.
+i is NOT in the word.
+c is in the word (but not in the correct spot)!
+Please enter a 5-letter word: maces
+m is in the word AND in the correct spot!
+a is in the word AND in the correct spot!
+c is in the word (but not in the correct spot)!
+e is NOT in the word.
+s is NOT in the word.
+Please enter a 5-letter word: macro
+m is in the word AND in the correct spot!
+a is in the word AND in the correct spot!
+c is in the word (but not in the correct spot)!
+r is in the word (but not in the correct spot)!
+o is in the word AND in the correct spot!
+Please enter a 5-letter word: marco
+m is in the word AND in the correct spot!
+a is in the word AND in the correct spot!
+r is in the word AND in the correct spot!
+c is in the word AND in the correct spot!
+o is in the word AND in the correct spot!
+You guessed it! The word is marco</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is another example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Welcome to Wordle!
+Please enter a 5-letter word: apple
+a is NOT in the word.
+p is NOT in the word.
+p is NOT in the word.
+l is in the word (but not in the correct spot)!
+e is in the word (but not in the correct spot)!
+Please enter 5-letter word: blues
+b is NOT in the word.
+l is in the word (but not in the correct spot)!
+u is NOT in the word.
+e is in the word (but not in the correct spot)!
+s is NOT in the word.
+Please enter a 5-letter word: monad
+m is NOT in the word.
+o is NOT in the word.
+n is NOT in the word.
+a is NOT in the word.
+d is NOT in the word.
+Please enter a 5-letter word: nomad
+n is NOT in the word.
+o is NOT in the word.
+m is NOT in the word.
+a is NOT in the word.
+d is NOT in the word.
+Please enter a 5-letter word: totem
+t is NOT in the word.
+o is NOT in the word.
+t is NOT in the word.
+e is in the word (but not in the correct spot)!
+m is NOT in the word.
+Please enter a 5-letter word: totem
+t is NOT in the word.
+o is NOT in the word.
+t is NOT in the word.
+e is in the word (but not in the correct spot)!
+m is NOT in the word.
+Sorry, you ran out of tries. The word is leigh</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -189,7 +314,7 @@ You guessed it!</code></pre>
 <p>Your program should implement at least one function. Try to keep your program DRY (e.g. Don&#8217;t Repeat Yourself!)</p>
 </li>
 <li>
-<p>Use the <code>rand()</code> function (defined in <code>stdlib.h</code>) to choose a random word from the pre-defined variable words.</p>
+<p>Use the <code>chooseWord()</code> function (defined in <code>words.h</code>) to choose a random word. Your basecode has this code in it already.</p>
 </li>
 <li>
 <p>Your output should be similar to the sample output, although you can customize it!</p>
@@ -197,25 +322,37 @@ You guessed it!</code></pre>
 <li>
 <p>Your program should print out whether the user guessed the word correctly or not. If the user doesn&#8217;t guess the word, you should tell the user the word.</p>
 </li>
+<li>
+<p>Your program should give the user 6 tries to guess the word</p>
+</li>
+<li>
+<p>For testing: print out the random word, or comment out the line <code>srand(time(0))</code> so that the same word is always chosen.</p>
+</li>
+<li>
+<p>Your code MUST not use boolean types (vanilla C only!!)</p>
+</li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The code <code>srand(time(0));</code> sets up the <code>rand()</code> function to produce different random numbers every time you run the program.
-Comment this line out, to run with the same random numbers. This can be useful for testing.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Feel free to implement bonus features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Re-ask the user for a word if they enter something that is not 5 characters</p>
+</li>
+<li>
+<p>Don&#8217;t allow the user to enter words that contain characters that we know aren&#8217;t in the word</p>
+</li>
+<li>
+<p>Surprise us!</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_submit_your_work">4. Submit your Work</h2>
+<h2 id="_submit_your_work">5. Submit your Work</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Push you work to github to submit your work.</p>
@@ -237,7 +374,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-09-06 12:43:34 -0400
+Last updated 2022-09-08 12:02:44 -0400
 </div>
 </div>
 </body>

@@ -15,10 +15,11 @@
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_assignment_2_if_you_malloc_something_set_it_free">Assignment 2: If you malloc something, set it free</a></li>
-<li><a href="#_cant_get_a_word_in_entwise">1. Can&#8217;t get a word in entwise</a></li>
-<li><a href="#_dynamic_restaurants">2. Dynamic restaurants</a></li>
-<li><a href="#_2048">3. 2048</a></li>
-<li><a href="#_submit_your_work">4. Submit your Work</a></li>
+<li><a href="#_update_your_repository">1. Update your repository</a></li>
+<li><a href="#_cant_get_a_word_in_entwise">2. Can&#8217;t get a word in entwise</a></li>
+<li><a href="#_dynamic_restaurants">3. Dynamic restaurants</a></li>
+<li><a href="#_2048">4. 2048</a></li>
+<li><a href="#_submit_your_work">5. Submit your Work</a></li>
 </ul>
 </div>
 </div>
@@ -48,7 +49,37 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cant_get_a_word_in_entwise">1. Can&#8217;t get a word in entwise</h2>
+<h2 id="_update_your_repository">1. Update your repository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Do a <strong>fetch upstream</strong> to obtain the basecode for this assignment.</p>
+</div>
+<div class="paragraph">
+<p>Using the command line</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open terminal and change your current directory to your assignment repository.</p>
+</li>
+<li>
+<p>Run the command <code>git fetch upstream</code></p>
+</li>
+<li>
+<p>Run the command <code>git merge upstream/main</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Your repository should now contain a new folder named <code>A02</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>fetch</code> and <code>merge</code> commands update your repository with any changes from the original.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cant_get_a_word_in_entwise">2. Can&#8217;t get a word in entwise</h2>
 <div class="sectionbody">
 <div class="literalblock">
 <div class="content">
@@ -103,7 +134,7 @@ H.....m.....m.....m.....?.....</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dynamic_restaurants">2. Dynamic restaurants</h2>
+<h2 id="_dynamic_restaurants">3. Dynamic restaurants</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Implement a program, <code>dynamic_restaurants.c</code>, that allows users to add restaurants to
@@ -186,7 +217,7 @@ call <code>scanf(" %[^\n]%*c", name);</code> instead of <code>scanf(" %s", name)
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2048">3. 2048</h2>
+<h2 id="_2048">4. 2048</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Implement a program, <code>2048.c</code>, that analyzes a board from the game 2048.</p>
@@ -194,14 +225,15 @@ call <code>scanf(" %[^\n]%*c", name);</code> instead of <code>scanf(" %s", name)
 <div class="paragraph">
 <p><a href="https://play2048.co/">2048</a> is a puzzle game created by
 Gabriele Cirulli. 2048 consists of a 4x4 grid that contains powers of two.
-Each turn, the player can shift all the values of the grid either up, down, left,
-or right. Zeroes correspond to "empty" spaces. During shifting, if two matching
+Each turn, the player can shift all the values in the grid either up, down, left,
+or right. During shifting, if two matching
 values collide, they combine into a single value that is the sum of them both.
-Values can only combine once is a single turn. Values cannot shift past the
+Values can only combine once in a single turn. Values cannot shift past the
 extents of the grid.</p>
 </div>
 <div class="paragraph">
-<p>For example, Suppose the current state of the board is as follows</p>
+<p>For example, Suppose the current state of the board is as follows (zeroes correspond to
+empty spaces)</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -231,7 +263,7 @@ extents of the grid.</p>
 <div class="paragraph">
 <p>The input is a 4x4 matrix representing a valid state of a 2048 puzzle.
 Input values will always be one of {0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024}.
-Integer 0 means an empty cell.</p>
+Integer 0 means an empty space.</p>
 </div>
 <div class="paragraph">
 <p><strong>Output</strong></p>
@@ -306,7 +338,7 @@ The largest value is 32.</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_submit_your_work">4. Submit your Work</h2>
+<h2 id="_submit_your_work">5. Submit your Work</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Push you work to github to submit your work.</p>
@@ -328,7 +360,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-09-16 16:33:24 -0400
+Last updated 2022-09-16 16:44:36 -0400
 </div>
 </div>
 </body>

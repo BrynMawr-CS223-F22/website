@@ -13,8 +13,8 @@ include::header.adoc[]
 Instructor: link:https://www.cs.brynmawr.edu/~alinen[Aline Normoyle]
 
 [.anns]
-* Current Agenda: link:#week02[Week2]
-* link:assts/asst01.html[Assignment 01]: *Due September 15th* is posted.
+* Current Agenda: link:#week04[Week4]
+* link:assts/asst02.html[Assignment 02]: *Due September 22* is posted.
 
 == Course Info
 

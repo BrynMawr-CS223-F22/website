@@ -31,20 +31,21 @@
 //-----------------------------
 |3
 |Sep 13,15 anchor:week03[]
-|*Debugging* 
+|*Pointers* 
 
-* Topics: GDB, Valgrind, Pointer-based data structures, More I/O
+* Topics: Pointer-based data structures, More I/O
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 3] 
 * Read: link:http://svslibrary.pbworks.com/f/Data+Structures+and+Algorithm+Analysis+in+C+-+Mark+Allen+Weiss.pdf[Data Structures in C, Mark Allen Weiss, Chpt 3 and 4]
-* link:assts/.html[Assignment 02]: Due Sept 22
+* link:assts/asst02.html[Assignment 02]: Due Sept 22
 * Lab: Jam practice
 // TODO * link:https://github.com/BrynMawr-CS223-F22/git-workshop[Github workshop] and link:https://github.com/BrynMawr-CS223-S22/git-workshop/blob/main/SSHSetup.md[Setting up SSH keys for Github]
 
 //-----------------------------
 |4
 |Sep 20,22 anchor:week04[]
-|*Binary and Data Representation I* 
+|*Debugging. Binary and Data Representation I* 
 
+* Topics: GDB, Valgrind, Binary representations of integers
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 4.1-4.3] 
 * link:assts/.html[Assignment 03]: Due Sept 29
 * Lab: **Code Jam 01**, link:studyguide1.html[Study Guide]

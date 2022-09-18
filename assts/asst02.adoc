@@ -71,7 +71,7 @@ Requirements and Hints:
 
 Implement a program, `dynamic_restaurants.c`, that allows users to add restaurants to 
 our restaurant directory. 
-Unlike last week's restaurants, your program only needs two features: 
+Unlike last week's restaurants, your program only needs the following features: 
 
 . The ability to create an array of new retaurants (use malloc/free)
 . The ability to add a new restaurant to the array of restaurants

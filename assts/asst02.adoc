@@ -190,7 +190,7 @@ $ **cat input3.txt**
 0 0 64 0
 
 $ **./2048 < input3.txt**
-The largest value is 4.
+The largest value is 64.
 
 $ **cat input4.txt**
 2 0 0 0

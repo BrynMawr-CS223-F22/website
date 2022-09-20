@@ -159,6 +159,7 @@ Integer 0 means an empty space.
 **Output**
 
 Output the largest value that can result from a shift in any direction.
+If no values can be combined in a shift, then your program should output the largest value on the board.
 
 [source,subs="quotes"]
 ----
@@ -190,7 +191,7 @@ $ **cat input3.txt**
 0 0 64 0
 
 $ **./2048 < input3.txt**
-The largest value is 64.
+The largest value is 4.
 
 $ **cat input4.txt**
 2 0 0 0

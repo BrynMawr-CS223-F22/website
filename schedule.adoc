@@ -52,23 +52,16 @@
 
 //-----------------------------
 |5
-|Oct 4,6 anchor:week05[]
+|Sep 27,29 anchor:week05[]
 |*Binary and Data Representation II* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 4.4-4.9] 
 * link:assts/.html[Assignment 04]: Due Oct 6
-* Lab: **Jam Redux 01**
+* Lab: **Jam Redux 01; Study Guide 02**
 
 //-----------------------------
 |6
-|Oct 11,13 anchor:week06[]
-|*Fall Break*
-
-* *NO LECTURES, LABS, HOMEWORKS*
-
-//-----------------------------
-|7
-|Oct 18,20 anchor:week07[]
+|Oct 4,6 anchor:week06[]
 |*Computer architecture, Assembly* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Section 5.1, Chapter 6] 
@@ -76,8 +69,14 @@
 * Lab: **Code Jam 02**, link:studyguide2.html[Study Guide 2]
 
 //-----------------------------
-|8
-|Oct 25,27 anchor:week08[]
+|7
+|Oct 11,13 anchor:week07[]
+|*Fall Break*
+* *NO LECTURES, LABS, HOMEWORKS*
+
+//-----------------------------
+|7
+|Oct 18,20 anchor:week08[]
 |*Assembly* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 7 (7.1-7.3,7.5,7.10), 10] 
@@ -85,8 +84,8 @@
 * Lab: **Jam 02 Redux**
 
 //-----------------------------
-|9
-|Nov 1,3, anchor:week09[]
+|8
+|Oct 25,27 anchor:week09[]
 |*Memory* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 11.1-11.3] 
@@ -95,43 +94,49 @@
 * Lab: **Jam 03**: link:studyguide3.html[Study Guide 3]
 
 //-----------------------------
+|9
+|Nov 1,3, anchor:week10[]
+
+* TBD
+
+//-----------------------------
 |10
-|Nov 8,10 anchor:week10[]
+|Nov 8,10 anchor:week11[]
 |*The operating system* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 13, skip section 13.3] 
 * link:assts/.html[Assignment 08]: Due Nov 10
-* Lab: **Jam 03 Redux**
+* Lab: **Jam 03 Redux; Jam 04 Study Guide**
 
 //-----------------------------
 |11
-|Nov 15,17 anchor:week11[]
+|Nov 15,17 anchor:week12[]
 |
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 13.4-13.6, Chapter 14] 
 * link:assts/.html[Assignment 09]: Due Nov 17 
-* Lab will be office hours
+* **Jam 04**: link:studyguide4.html[Study Guide 4]
+
 
 //-----------------------------
 |12
-|Nov 22 anchor:week12[]
+|Nov 22 anchor:week13[]
 |*Inter-process communication, Threads I* 
 
 * *No class Thursday, Nov 24 (Thanksgiving)*
 * link:assts/.html[Assignment 10]: Due Dec 1
-* **Jam 04**: link:studyguide4.html[Study Guide 4]
-
-//-----------------------------
-|13
-|Nov 29,31 anchor:week13[]
-|*Threads* 
-
-* Read: link:https://diveintosystems.org/singlepage/[Chapter 14] 
 * **Jam 04 Redux**
 
 //-----------------------------
+|13
+|Nov 29,31 anchor:week14[]
+|*Threads* 
+
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 14] 
+
+//-----------------------------
 |14
-|Dec 6,8 anchor:week14[]
+|Dec 6,8 anchor:week15[]
 |*Code Optimization* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 12] 

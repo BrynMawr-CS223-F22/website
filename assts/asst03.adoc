@@ -15,87 +15,106 @@ The goals for this assignment are:
 * Work with 2D arrays
 * Work with pointer-based data structures
 * Use gdb and valgrind. 
-* Work with different types of input: stdin, command line arguments, and files
 
 **All programs must run without memory errors and leaks!**
 
 :sectnums:
 
-= Magic Square
+= Minesweeper
 
-Implement a program, `magic_square.c`, that tests whether a given matrix is a magic square. 
-A link:https://en.wikipedia.org/wiki/Magic_square[magic square] is an N by N matrix where each 
-row, column, and diagonal has the same sum, called the _magic constant_. 
+Implement a program, `minesweeper.c`, that generates a minesweeper board.
+In link:https://minesweeperonline.com/#[Minesweeper], each cell can either 
+contain a bomb or not. Cells without bombs are called safe cells. 
 
-image::https://mathworld.wolfram.com/images/gifs/melencol.jpg[height=200]
+Your program should take three command line arguments -- m, n, and p -- and 
+generate a m x n grid of cells where each cell has probability p of containing a 
+bomb. Then, you program shoul print out the grid using X for bombs and . (period) 
+for safe cells. Finally, your program should output an additional 2D grid with the 
+number of neighboring bombs for each cell (above, below, left, and right). 
 
 [source,subs="quotes"]
 ----
-$ **make magic_square**
-gcc -g magic_square.c -o magic_square
-$ **./magic_square < magic1.txt**
-8 1 6
-3 5 7
-4 9 2
-M is a magic square (magic constant = 15)
-$ **./magic_square < magic2.txt**
-9 1 6
-3 5 7
-4 8 2
-M is NOT a magic square!
-$ **./magic_square < magic3.txt**
-1
-M is a magic square (magic constant = 1)
+$ **make minesweeper**
+gcc -g -Wall -Wvla -Werror minesweeper.c -o minesweeper
+$ **./minesweeper 3 5 0.4**
+X X . . .
+. . . . .
+. X . . .
+
+X X 1 0 0
+3 3 2 0 0
+1 X 1 0 0
 ----
 
 Requirements/Hints:
 
-* Read in the matrix from stdin using `scanf(" %d", &val);`. The first two values are the dimensions of the matrix. All subsequent integers are the values of the matrix. 
-* Use malloc and free to allocate a 2D array to store the inputs.
+* Use malloc and free to allocate a 2D array to store the grid.
+* Use rand() and srand(time(0)) to create random boards
+* Your program must use command line arguments!
 
-= Sorted Snacks
+NOTE: To read in link:https://diveintosystems.org/book/C2-C_depth/advanced_cmd_line_args.html#_c_cmd_line_args_[command line arguments], define main with argc and argv parameters 
+as follows. The first command line argument is always the program name. `argc` is 
+the number of arguments. You can use `atoi` and `atof` to convert from strings 
+to numeric types (int and float respectively)
+[source]
+----
+int main(int argc, char** argv) {
+  if (argc != 4) {
+    printf("usage: %s m n p\n", argv[0]);
+  }
+  
+  return 0;
+}
+----
 
-Implement a program, `sorted_snackbar.c`, that allows users to add snacks to the snackbar and displays 
-them in alphabetical order. Your program should have the same features as last week's snackbar, but should 
+= Sorted Restaurants
+
+Implement a program, `sorted_restaurants.c`, that allows users to add restaurants to a list 
+sorted by rating, from highest rated to lowest rated. 
+
+Your program should have the same features as last week's restaurant directory, but should 
 use a _linked list_ to store the snacks, rather than an array. 
 
 [source,subs="quotes"]
 ----
-$ **make sorted_snackbar**
-gcc sorted_snackbar.c -o sorted_snackbar
-$ **./sorted_snackbar**
-Enter a number of snacks: **3**
-Enter a name: **Slurm**
-Enter a cost: **1.50**
-Enter a quantity: **3**
-Enter a name: **Beans**
-Enter a cost: **5**
-Enter a quantity: **1**
-Enter a name: **Carrots**
-Enter a cost: **2**
-Enter a quantity: **10**
+$ **make sorted_restaurants**
+gcc -g -Wall -Wvla -Werror sorted_restaurants.c -o sorted_restaurants
+$ **./sorted_restaurants**
+Enter a number of restaurants: **3**
+Enter a name: **Sushi Atsumi**
+Open time: **11**
+Close time: **23**
+Stars: **3.5**
+Enter a name: **The Thirsty Horse**
+Open time: **17**
+Close time: **2**
+Stars: **4.5**
+Enter a name: **Magic Bean Coffee**
+Open time: **6**
+Close time: **15**
+Stars: **4.1**
 
-Welcome to Sorted Sally's Snack Bar.
+Welcome to Sorted Sally's Restaurant Directory.
 
-0) Beans                cost: $5.00     quantity: 1
-1) Carrots              cost: $2.00     quantity: 10
-2) Slurm                cost: $1.50     quantity: 3
+0) The Thirsty Horse    open: 17:00     close: 2:00     stars: 4.5
+1) Magic Bean Coffee    open: 6:00      close: 15:00    stars: 4.1
+2) Sushi Atsumi         open: 11:00     close: 23:00    stars: 3.5
 ----
 
 Requirements/Hints:
 
-* Implement the function `insert_sorted`. This function should create a new snack struct and return the first item in the list
-* Implement the function `clear`. This function should clear and free all items in the list.
+* Implement a function `insert_sorted`. This function should create a new snack struct and return the first item in the list. See the book, _Data structures in C_ for example implementations of insert.
+* Implement a function `clear`. This function should clear and free all items in the list.
 
-= Matching braces 
+= Matching braces
 
-Implement a program, `match_braces.c`, that takes a filename as a command line argument and uses a stack to check 
-for matched braces and report any errors.
+Implement a program, `match_braces.c`, that takes a filename as a command line
+argument and uses a stack to check for matched braces and report any errors.
 
 [source,subs="quotes"]
 ----
 $ **make match_braces**
-gcc -g match_braces.c -o match_braces
+gcc -g -Wall -Wvla -Werror match_braces.c -o match_braces
 $ **./match_braces**
 usage: ./match_braces <filename>
 $ **./match_braces prog.c**
@@ -113,20 +132,27 @@ Unmatched brace on Line 34 and Column 34
 Requirements/Hints:
 
 * Implement the functions `push`, `pop`, `clear`. Implementing `print` is also recommended to help you debug your assignment.
-* Use link:https://diveintosystems.org/book/C2-C_depth/advanced_cmd_line_args.html[command line arguments] to input the filename. 
+* Use to input the filename. 
 * Print the usage if the user inputs an incorrect number of command line arguments
 * Print an error if your program cannot open the file
 * Use `fgetc` to read the file one character at a time. Update the current line number when you encounter `\n`. Update the current column as you read in each character. 
 * To check for matched braces, push to the stack when you encounter a '{' and then pop from the stack when you encounter '}'. If the symbols pushed and popped do not match, there is an error. 
-* The output of the program should match the line and column numbers that Vim reports when you use `%` to check for matched braces. 
+* The output of the program should match the line and column numbers that VS Code reports when you check for matched braces. 
+
+NOTE: To open and read the file, use a file pointer (FILE*). See link:https://diveintosystems.org/book/C2-C_depth/IO.html#_file_inputoutput[File Input/Output] for examples.
 
 = Submit your Work
+
+Before submitting, check that
+
+* Your programs run on goldengate using the `make` command!
+* valgrind does not report any errors!
 
 Push you work to github to submit your work.
 
 [source]
 ----
-$ cd A01
+$ cd A03
 $ git status
 $ git add *.c 
 $ git status

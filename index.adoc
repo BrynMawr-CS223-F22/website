@@ -13,15 +13,15 @@ include::header.adoc[]
 Instructor: link:https://www.cs.brynmawr.edu/~alinen[Aline Normoyle]
 
 [.anns]
-* Current Agenda: link:#week04[Week4]
-* link:assts/asst02.html[Assignment 02]: *Due September 22* is posted.
+* Current Agenda: link:#week05[Week5]
+* link:assts/asst03.html[Assignment 03]: *Due September 29* is posted.
 
 == Course Info
 
 **Welcome to CS223: Systems Programming**! 
 
 Systems programming provides a foundation for the implementation of programs and
-toolkits that  serve as infrastructure for other software, such as compilers,
+toolkits that serve as infrastructure for other software, such as compilers,
 operating systems, networking APIs, and graphics engines.  Topics include
 pointers, bit representations of data, x86_64 assembly, memory management,
 processes, and threads.  In this class, students will gain hands-on experience

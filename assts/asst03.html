@@ -15,8 +15,8 @@
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_assignment_3_watch_where_you_point">Assignment 3: Watch where you point!</a></li>
-<li><a href="#_magic_square">1. Magic Square</a></li>
-<li><a href="#_sorted_snacks">2. Sorted Snacks</a></li>
+<li><a href="#_minesweeper">1. Minesweeper</a></li>
+<li><a href="#_sorted_restaurants">2. Sorted Restaurants</a></li>
 <li><a href="#_matching_braces">3. Matching braces</a></li>
 <li><a href="#_submit_your_work">4. Submit your Work</a></li>
 </ul>
@@ -46,9 +46,6 @@
 <li>
 <p>Use gdb and valgrind.</p>
 </li>
-<li>
-<p>Work with different types of input: stdin, command line arguments, and files</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -57,35 +54,32 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_magic_square">1. Magic Square</h2>
+<h2 id="_minesweeper">1. Minesweeper</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement a program, <code>magic_square.c</code>, that tests whether a given matrix is a magic square.
-A <a href="https://en.wikipedia.org/wiki/Magic_square">magic square</a> is an N by N matrix where each
-row, column, and diagonal has the same sum, called the <em>magic constant</em>.</p>
+<p>Implement a program, <code>minesweeper.c</code>, that generates a minesweeper board.
+In <a href="https://minesweeperonline.com/#">Minesweeper</a>, each cell can either
+contain a bomb or not. Cells without bombs are called safe cells.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="https://mathworld.wolfram.com/images/gifs/melencol.jpg" alt="melencol" height="200">
-</div>
+<div class="paragraph">
+<p>Your program should take three command line arguments&#8201;&#8212;&#8201;m, n, and p&#8201;&#8212;&#8201;and
+generate a m x n grid of cells where each cell has probability p of containing a
+bomb. Then, you program shoul print out the grid using X for bombs and . (period)
+for safe cells. Finally, your program should output an additional 2D grid with the
+number of neighboring bombs for each cell (above, below, left, and right).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ <strong>make magic_square</strong>
-gcc -g magic_square.c -o magic_square
-$ <strong>./magic_square < magic1.txt</strong>
-8 1 6
-3 5 7
-4 9 2
-M is a magic square (magic constant = 15)
-$ <strong>./magic_square < magic2.txt</strong>
-9 1 6
-3 5 7
-4 8 2
-M is NOT a magic square!
-$ <strong>./magic_square < magic3.txt</strong>
-1
-M is a magic square (magic constant = 1)</code></pre>
+<pre class="highlight"><code>$ <strong>make minesweeper</strong>
+gcc -g -Wall -Wvla -Werror minesweeper.c -o minesweeper
+$ <strong>./minesweeper 3 5 0.4</strong>
+X X . . .
+. . . . .
+. X . . .
+
+X X 1 0 0
+3 3 2 0 0
+1 X 1 0 0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -94,44 +88,79 @@ M is a magic square (magic constant = 1)</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Read in the matrix from stdin using <code>scanf(" %d", &amp;val);</code>. The first two values are the dimensions of the matrix. All subsequent integers are the values of the matrix.</p>
+<p>Use malloc and free to allocate a 2D array to store the grid.</p>
 </li>
 <li>
-<p>Use malloc and free to allocate a 2D array to store the inputs.</p>
+<p>Use rand() and srand(time(0)) to create random boards</p>
+</li>
+<li>
+<p>Your program must use command line arguments!</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To read in <a href="https://diveintosystems.org/book/C2-C_depth/advanced_cmd_line_args.html#<em>c_cmd_line_args</em>">command line arguments</a>, define main with argc and argv parameters
+as follows. The first command line argument is always the program name. <code>argc</code> is
+the number of arguments. You can use <code>atoi</code> and <code>atof</code> to convert from strings
+to numeric types (int and float respectively)
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>int main(int argc, char** argv) {
+  if (argc != 4) {
+    printf("usage: %s m n p\n", argv[0]);
+  }
+
+  return 0;
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sorted_snacks">2. Sorted Snacks</h2>
+<h2 id="_sorted_restaurants">2. Sorted Restaurants</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement a program, <code>sorted_snackbar.c</code>, that allows users to add snacks to the snackbar and displays
-them in alphabetical order. Your program should have the same features as last week&#8217;s snackbar, but should
+<p>Implement a program, <code>sorted_restaurants.c</code>, that allows users to add restaurants to a list
+sorted by rating, from highest rated to lowest rated.</p>
+</div>
+<div class="paragraph">
+<p>Your program should have the same features as last week&#8217;s restaurant directory, but should
 use a <em>linked list</em> to store the snacks, rather than an array.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ <strong>make sorted_snackbar</strong>
-gcc sorted_snackbar.c -o sorted_snackbar
-$ <strong>./sorted_snackbar</strong>
-Enter a number of snacks: <strong>3</strong>
-Enter a name: <strong>Slurm</strong>
-Enter a cost: <strong>1.50</strong>
-Enter a quantity: <strong>3</strong>
-Enter a name: <strong>Beans</strong>
-Enter a cost: <strong>5</strong>
-Enter a quantity: <strong>1</strong>
-Enter a name: <strong>Carrots</strong>
-Enter a cost: <strong>2</strong>
-Enter a quantity: <strong>10</strong>
+<pre class="highlight"><code>$ <strong>make sorted_restaurants</strong>
+gcc -g -Wall -Wvla -Werror sorted_restaurants.c -o sorted_restaurants
+$ <strong>./sorted_restaurants</strong>
+Enter a number of restaurants: <strong>3</strong>
+Enter a name: <strong>Sushi Atsumi</strong>
+Open time: <strong>11</strong>
+Close time: <strong>23</strong>
+Stars: <strong>3.5</strong>
+Enter a name: <strong>The Thirsty Horse</strong>
+Open time: <strong>17</strong>
+Close time: <strong>2</strong>
+Stars: <strong>4.5</strong>
+Enter a name: <strong>Magic Bean Coffee</strong>
+Open time: <strong>6</strong>
+Close time: <strong>15</strong>
+Stars: <strong>4.1</strong>
 
-Welcome to Sorted Sally's Snack Bar.
+Welcome to Sorted Sally's Restaurant Directory.
 
-0) Beans                cost: $5.00     quantity: 1
-1) Carrots              cost: $2.00     quantity: 10
-2) Slurm                cost: $1.50     quantity: 3</code></pre>
+0) The Thirsty Horse    open: 17:00     close: 2:00     stars: 4.5
+1) Magic Bean Coffee    open: 6:00      close: 15:00    stars: 4.1
+2) Sushi Atsumi         open: 11:00     close: 23:00    stars: 3.5</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -140,10 +169,10 @@ Welcome to Sorted Sally's Snack Bar.
 <div class="ulist">
 <ul>
 <li>
-<p>Implement the function <code>insert_sorted</code>. This function should create a new snack struct and return the first item in the list</p>
+<p>Implement a function <code>insert_sorted</code>. This function should create a new snack struct and return the first item in the list. See the book, <em>Data structures in C</em> for example implementations of insert.</p>
 </li>
 <li>
-<p>Implement the function <code>clear</code>. This function should clear and free all items in the list.</p>
+<p>Implement a function <code>clear</code>. This function should clear and free all items in the list.</p>
 </li>
 </ul>
 </div>
@@ -153,13 +182,13 @@ Welcome to Sorted Sally's Snack Bar.
 <h2 id="_matching_braces">3. Matching braces</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Implement a program, <code>match_braces.c</code>, that takes a filename as a command line argument and uses a stack to check
-for matched braces and report any errors.</p>
+<p>Implement a program, <code>match_braces.c</code>, that takes a filename as a command line
+argument and uses a stack to check for matched braces and report any errors.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>$ <strong>make match_braces</strong>
-gcc -g match_braces.c -o match_braces
+gcc -g -Wall -Wvla -Werror match_braces.c -o match_braces
 $ <strong>./match_braces</strong>
 usage: ./match_braces <filename>
 $ <strong>./match_braces prog.c</strong>
@@ -183,7 +212,7 @@ Unmatched brace on Line 34 and Column 34</code></pre>
 <p>Implement the functions <code>push</code>, <code>pop</code>, <code>clear</code>. Implementing <code>print</code> is also recommended to help you debug your assignment.</p>
 </li>
 <li>
-<p>Use <a href="https://diveintosystems.org/book/C2-C_depth/advanced_cmd_line_args.html">command line arguments</a> to input the filename.</p>
+<p>Use to input the filename.</p>
 </li>
 <li>
 <p>Print the usage if the user inputs an incorrect number of command line arguments</p>
@@ -198,9 +227,21 @@ Unmatched brace on Line 34 and Column 34</code></pre>
 <p>To check for matched braces, push to the stack when you encounter a '{' and then pop from the stack when you encounter '}'. If the symbols pushed and popped do not match, there is an error.</p>
 </li>
 <li>
-<p>The output of the program should match the line and column numbers that Vim reports when you use <code>%</code> to check for matched braces.</p>
+<p>The output of the program should match the line and column numbers that VS Code reports when you check for matched braces.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To open and read the file, use a file pointer (FILE*). See <a href="https://diveintosystems.org/book/C2-C_depth/IO.html#_file_inputoutput">File Input/Output</a> for examples.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -208,11 +249,24 @@ Unmatched brace on Line 34 and Column 34</code></pre>
 <h2 id="_submit_your_work">4. Submit your Work</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Before submitting, check that</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your programs run on goldengate using the <code>make</code> command!</p>
+</li>
+<li>
+<p>valgrind does not report any errors!</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
 <p>Push you work to github to submit your work.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ cd A01
+<pre class="highlight"><code>$ cd A03
 $ git status
 $ git add *.c
 $ git status
@@ -227,7 +281,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-23 09:51:30 -0400
+Last updated 2022-09-23 17:56:17 -0400
 </div>
 </div>
 </body>

@@ -4,6 +4,7 @@ include::header.adoc[]
 :Author Initials: ASN
 :Date:    2020-08-15
 :Revision: 0.1
+:ASST: A03
 
 = {title}
 
@@ -19,6 +20,20 @@ The goals for this assignment are:
 **All programs must run without memory errors and leaks!**
 
 :sectnums:
+
+= Update your repository
+
+Do a *fetch upstream* to obtain the basecode for this assignment. 
+
+Using the command line
+
+* Open terminal and change your current directory to your assignment repository.
+* Run the command `git fetch upstream`
+* Run the command `git merge upstream/main`
+
+Your repository should now contain a new folder named `{ASST}`.
+
+The `fetch` and `merge` commands update your repository with any changes from the original.
 
 = Minesweeper
 
@@ -150,13 +165,13 @@ Before submitting, check that
 
 Push you work to github to submit your work.
 
-[source]
+[subs="attributes"]
 ----
-$ cd A03
+$ cd {ASST}
 $ git status
 $ git add *.c 
 $ git status
-$ git commit -m "assignment 3 complete"
+$ git commit -m "{ASST} complete"
 $ git status
 $ git push
 $ git status

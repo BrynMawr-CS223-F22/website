@@ -47,7 +47,7 @@
 
 * Topics: GDB, Valgrind, Binary representations of integers
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 4.1-4.3] 
-* link:assts/.html[Assignment 03]: Due Sept 29
+* link:assts/asst03.html[Assignment 03]: Due Sept 29
 * Lab: **Code Jam 01**, link:studyguide1.html[Study Guide]
 
 //-----------------------------

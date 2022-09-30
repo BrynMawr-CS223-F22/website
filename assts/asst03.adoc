@@ -45,7 +45,7 @@ Your program should take three command line arguments -- m, n, and p -- and
 generate a m x n grid of cells where each cell has probability p of containing a 
 bomb. Then, you program shoul print out the grid using X for bombs and . (period) 
 for safe cells. Finally, your program should output an additional 2D grid with the 
-number of neighboring bombs for each cell (above, below, left, and right). 
+number of neighboring bombs for each cell (above, below, left, right, NW, NE, SW, SE). 
 
 [source,subs="quotes"]
 ----
@@ -121,7 +121,7 @@ Requirements/Hints:
 * Implement a function `insert_sorted`. This function should create a new snack struct and return the first item in the list. See the book, _Data structures in C_ for example implementations of insert.
 * Implement a function `clear`. This function should clear and free all items in the list.
 
-= Matching braces
+= Matching braces (Due Next Thurs - Oct 5)
 
 Implement a program, `match_braces.c`, that takes a filename as a command line
 argument and uses a stack to check for matched braces and report any errors.

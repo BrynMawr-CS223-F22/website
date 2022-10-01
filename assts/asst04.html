@@ -16,9 +16,11 @@
 <ul class="sectlevel1">
 <li><a href="#_assignment_4_dont_be_afraid_to_ascii">Assignment 4: Don&#8217;t be afraid to ASCII</a></li>
 <li><a href="#_background_ppm">Background: PPM</a></li>
-<li><a href="#_read_ppm">1. Read PPM</a></li>
-<li><a href="#_ascii_art">2. ASCII Art</a></li>
-<li><a href="#_submit_your_work">3. Submit your work</a></li>
+<li><a href="#_update_your_repository">1. Update your repository</a></li>
+<li><a href="#_matching_braces">2. Matching braces</a></li>
+<li><a href="#_read_ppm">3. Read PPM</a></li>
+<li><a href="#_ascii_art">4. ASCII Art</a></li>
+<li><a href="#_submit_your_work">5. Submit your work</a></li>
 </ul>
 </div>
 </div>
@@ -27,7 +29,7 @@
 <h2 id="_assignment_4_dont_be_afraid_to_ascii">Assignment 4: Don&#8217;t be afraid to ASCII</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Due Thursday, , before midnight</strong></p>
+<p><strong>Due Thursday, Oct 6, before midnight</strong></p>
 </div>
 <div class="paragraph">
 <p>The goals for this assignment are:</p>
@@ -35,7 +37,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Work with more complex files</p>
+<p>Work with files</p>
 </li>
 <li>
 <p>Deepen our understanding of data types</p>
@@ -64,6 +66,9 @@ The properties of the image, such as its size and color format, are specified at
 file (called its "header information"). PPM supports both ASCII (plain text) and binary data (raw).</p>
 </div>
 <div class="paragraph">
+<p>We will write a funtion that <strong>reads PPM files in binary format</strong>!</p>
+</div>
+<div class="paragraph">
 <p>For example, consider the following image</p>
 </div>
 <div class="imageblock">
@@ -72,19 +77,41 @@ file (called its "header information"). PPM supports both ASCII (plain text) and
 </div>
 </div>
 <div class="paragraph">
-<p>In ASCII format, the above image is stored as follows. To see for yourself, do <code>cat feep-ascii.ppm</code>.</p>
+<p>The above image contains a 4x4 grid of colored pixels. Each pixel is a triplet of red-blue-green (RGB) color
+values, each stored as an <code>unsigned char</code>. Unsigned chars have values which range from 0 to 255, where
+smaller values correspond to darker colors. The triplet (0,0,0) corresponds to black. The triplet
+(255,255,255) cooresponds to white. The triplet (255,0,0) corresponds to red. This system of colors is called
+the <a href="https://en.wikipedia.org/wiki/RGB_color_model">RGB Color Model</a> and it is a common standard for
+representing colors on a computer.</p>
+</div>
+<div class="paragraph">
+<p>The RGB colors for the pixels in the above image are as follows</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>P3
-# This is a comment
-4 4
-255
-0  0  0   100 0  0       0  0  0    255   0 255
-0  0  0    0 255 175     0  0  0     0    0  0
-0  0  0    0  0  0       0 15 175    0    0  0
-255 0 255  0  0  0       0  0  0    255  255 255</code></pre>
+<pre class="highlight"><code>(0,0,0)      (100,0,0)    (0,0,0)     (255,0,255)
+(0,0,0)      (0,255,175)  (0,0,0)     (0,0,0)
+(0,0,0)      (0,0,0)      (0,15,175)  (0,0,0)
+(255,0,255)  (0,0,0)      (0,0,0)     (255,255,255)</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>In binary format (also called <em>raw</em> format), the image is stored as follows.
+To see for yourself, do <code>hexedit feep-raw.ppm</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>00000000   50 36 0A 23  20 43 72 65  61 74 65 64  20 62 79 20  47 49 4D 50  20 76 65 72  P6.# Created by GIMP ver
+00000018   73 69 6F 6E  20 32 2E 31  30 2E 32 34  20 50 4E 4D  20 70 6C 75  67 2D 69 6E  sion 2.10.24 PNM plug-in
+00000030   0A 34 20 34  0A 32 35 35  0A 00 00 00  64 00 00 00  00 00 FF 00  FF 00 00 00  .4 4.255....d...........
+00000048   00 FF AF 00  00 00 00 00  00 00 00 00  00 00 00 00  0F AF 00 00  00 FF 00 FF  ........................
+00000060   00 00 00 00  00 00 FF FF  FF                                                  .........</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The leftmost column is byte number in hexidecimal. For example, 0x18 is 24 in decimal. There are 24 bytes
+on the first row on output. The rightmost column displays the raw data in ASCII, using <code>.</code> for non-visible
+ASCII codes, such as '\0' and 'Escape'.</p>
 </div>
 <div class="paragraph">
 <p>Regardless of format, every PPM file starts the following information in its header.</p>
@@ -92,7 +119,7 @@ file (called its "header information"). PPM supports both ASCII (plain text) and
 <div class="ulist">
 <ul>
 <li>
-<p>A "magic number" indicating the type of PPM. ASCII types start with "P3". Binary types start with "P6".</p>
+<p>A "magic number" indicating the type of PPM. Binary types start with "P6".</p>
 </li>
 <li>
 <p>Whitespace  (blanks, tabs, \n, \r, etc)</p>
@@ -107,7 +134,7 @@ file (called its "header information"). PPM supports both ASCII (plain text) and
 <p>A single whitespace character</p>
 </li>
 <li>
-<p>A 2D raster (e.g. 2D array) of Height number of rows and Width number of columns, in order from top to bottom.</p>
+<p>A raster (e.g. the array of pixels) of Height number of rows and Width number of columns, in order from top to bottom.</p>
 </li>
 </ul>
 </div>
@@ -141,7 +168,104 @@ PPM files can be viewed using tools such as Photoshop and Gimp.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_read_ppm">1. Read PPM</h2>
+<h2 id="_update_your_repository">1. Update your repository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Do a <strong>fetch upstream</strong> to obtain the basecode for this assignment.</p>
+</div>
+<div class="paragraph">
+<p>Using the command line</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open terminal and change your current directory to your assignment repository.</p>
+</li>
+<li>
+<p>Run the command <code>git fetch upstream</code></p>
+</li>
+<li>
+<p>Run the command <code>git merge upstream/main</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Your repository should now contain a new folder named <code>A03</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>fetch</code> and <code>merge</code> commands update your repository with any changes from the original.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_matching_braces">2. Matching braces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implement a program, <code>match_braces.c</code>, that takes a filename as a command line
+argument and uses a stack to check for matched braces and report any errors.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ <strong>make match_braces</strong>
+gcc -g -Wall -Wvla -Werror match_braces.c -o match_braces
+$ <strong>./match_braces</strong>
+usage: ./match_braces <filename>
+$ <strong>./match_braces prog.c</strong>
+Cannot open file: prog.c
+$ <strong>./match_braces prog1.c</strong>
+Found matching braces: (21, 32) -> (23, 5)
+Found matching braces: (25, 30) -> (28, 9)
+Found matching braces: (17, 53) -> (29, 5)
+Unmatched brace on Line 31 and Column 1
+Found matching braces: (40, 47) -> (43, 5)
+Found matching braces: (36, 18) -> (47, 1)
+Unmatched brace on Line 34 and Column 34</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Requirements/Hints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement the functions <code>push</code>, <code>pop</code>, <code>clear</code>. Implementing <code>print</code> is also recommended to help you debug your assignment.</p>
+</li>
+<li>
+<p>Use to input the filename.</p>
+</li>
+<li>
+<p>Print the usage if the user inputs an incorrect number of command line arguments</p>
+</li>
+<li>
+<p>Print an error if your program cannot open the file</p>
+</li>
+<li>
+<p>Use <code>fgetc</code> to read the file one character at a time. Update the current line number when you encounter <code>\n</code>. Update the current column as you read in each character.</p>
+</li>
+<li>
+<p>To check for matched braces, push to the stack when you encounter a '{' and then pop from the stack when you encounter '}'. If the symbols pushed and popped do not match, there is an error.</p>
+</li>
+<li>
+<p>The output of the program should match the line and column numbers that VS Code reports when you check for matched braces.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To open and read the file, use a file pointer (FILE*). See <a href="https://diveintosystems.org/book/C2-C_depth/IO.html#_file_inputoutput">File Input/Output</a> for examples.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_read_ppm">3. Read PPM</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For this question, you will implement a function, <code>read_ppm()</code>, that can read
@@ -161,7 +285,7 @@ and return a 2D array of <code>struct pixel</code>. A <code>struct pixel</code> 
 <p>The user of the function <code>read_ppm</code> is reponsible for freeing the memory allocated by this function.</p>
 </div>
 <div class="paragraph">
-<p>You will re-use this function for the next question. For this reason, we place its implementation
+<p>You will re-use this function throughout the semester. For this reason, we place its implementation
 in it&#8217;s own file, <code>read_ppm.c</code>, and use a header file, <code>read_ppm.h</code>, to include it in our main application.</p>
 </div>
 <div class="paragraph">
@@ -181,7 +305,7 @@ contents of <code>feep-ascii.ppm</code> like so:</p>
 <pre class="highlight"><code>$ <strong>make test_ppm</strong>
 gcc -g -Wall -Wvla -Werror test_ppm.c read_ppm.c -o test_ppm
 $ <strong>./test_ppm</strong>
-Testing file feep-ascii.ppm: 4 4
+Testing file feep-raw.ppm: 4 4
 (0,0,0) (100,0,0) (0,0,0) (255,0,255)
 (0,0,0) (0,255,175) (0,0,0) (0,0,0)
 (0,0,0) (0,0,0) (0,15,175) (0,0,0)
@@ -206,9 +330,6 @@ Testing file feep-ascii.ppm: 4 4
 <p>You can assume that it is safe to read the header line by line (e.g. using <code>fgets</code>).</p>
 </li>
 <li>
-<p>You can use <code>fscanf(fp, " %hhu %hhu %hhu", &amp;r, &amp;g, &amp;b)</code> to read unsigned char color values</p>
-</li>
-<li>
 <p>Don&#8217;t forget to free your data!</p>
 </li>
 </ul>
@@ -216,16 +337,17 @@ Testing file feep-ascii.ppm: 4 4
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ascii_art">2. ASCII Art</h2>
+<h2 id="_ascii_art">4. ASCII Art</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When I was a kid, my mom used to bring home dot-matrix printouts of ascii art for my sister and I to use as coloring books.</p>
+<p>When I was a kid, my mom used to bring home dot-matrix printouts of ascii art
+for my sister and I to use as coloring books.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="img/ascii-snoopy.jpg" alt="ascii snoopy"></span></p>
 </div>
 <div class="paragraph">
-<p>For this question, write a program, <code>ascii_art.c</code>, that takes a PPM image as a
+<p>For this question, write a program, <code>ascii_image.c</code>, that takes a PPM image as a
 command line argument and displays it as
 <a href="https://en.wikipedia.org/wiki/ASCII_art">ASCII Art</a>.</p>
 </div>
@@ -233,14 +355,14 @@ command line argument and displays it as
 <div class="content">
 <pre class="highlight"><code>$ <strong>make ascii_image</strong>
 gcc -g -Wall -Wvla -Werror ascii_image.c read_ppm.c -o ascii_image
-$ <strong>./ascii_image feep-ascii.ppm</strong>
-Reading feep-ascii.ppm with width 4 and height 4
+$ <strong>./ascii_image feep-raw.ppm</strong>
+Reading feep-raw.ppm with width 4 and height 4
 @#@:
 @;@@
 @@%@
 :@@
-$ <strong>./ascii_image smile-ascii.ppm</strong>
-Reading smile-ascii.ppm with width 14 and height 19
+$ <strong>./ascii_image smile-raw.ppm</strong>
+Reading smile-raw.ppm with width 14 and height 19
 @@@@@@@@@@@@@@
 @@@@@@@@@@@@@@
 @@          @@
@@ -331,21 +453,34 @@ Reading smile-ascii.ppm with width 14 and height 19
 </div>
 </div>
 <div class="sect1">
-<h2 id="_submit_your_work">3. Submit your work</h2>
+<h2 id="_submit_your_work">5. Submit your work</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Before submitting, check that</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your programs run on goldengate using the <code>make</code> command!</p>
+</li>
+<li>
+<p>valgrind does not report any errors!</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Push you work to github to submit your work.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ cd A01
+<pre>$ cd A03
 $ git status
 $ git add *.c
 $ git status
-$ git commit -m "assignment 3 complete"
+$ git commit -m "A03 complete"
 $ git status
 $ git push
-$ git status</code></pre>
+$ git status</pre>
 </div>
 </div>
 </div>
@@ -353,7 +488,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-23 09:51:30 -0400
+Last updated 2022-10-01 09:18:38 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

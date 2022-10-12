@@ -150,7 +150,7 @@ NOTE: To open and read the file, use a file pointer (FILE*). See link:https://di
 = Read PPM
 
 For this question, you will implement a function, `read_ppm()`, that can read
-PPM files stored in ASCII format. This function should take a filename as input
+PPM files stored in _binary_ format. This function should take a filename as input
 and return a 2D array of `struct pixel`. A `struct pixel` has the following definition
 
 [source]

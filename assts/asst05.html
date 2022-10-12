@@ -15,11 +15,10 @@
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_assignment_5_give_a_little_bit">Assignment 5: Give a little bit</a></li>
-<li><a href="#_four_letter_words">1. Four letter words</a></li>
-<li><a href="#_binary_to_ascii">2. Binary to ASCII</a></li>
-<li><a href="#_read_raw">3. Read raw</a></li>
-<li><a href="#_glitch">4. Glitch</a></li>
-<li><a href="#_submit_your_work">5. Submit your work</a></li>
+<li><a href="#_tiny_bitmaps">1. Tiny Bitmaps</a></li>
+<li><a href="#_write_ppm">2. Write PPM</a></li>
+<li><a href="#_glitch">3. Glitch</a></li>
+<li><a href="#_submit_your_work">4. Submit your work</a></li>
 </ul>
 </div>
 </div>
@@ -28,7 +27,7 @@
 <h2 id="_assignment_5_give_a_little_bit">Assignment 5: Give a little bit</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Due Thursday, , before midnight</strong></p>
+<p><strong>Due Thursday, Oct 20, before midnight</strong></p>
 </div>
 <div class="paragraph">
 <p>The goals for this assignment are:</p>
@@ -36,13 +35,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Understand binary representations of data types</p>
+<p>Directly manipulate basic types at the bit level using masks</p>
 </li>
 <li>
 <p>Directly manipulate basic types at the bit level</p>
-</li>
-<li>
-<p>Work with bitwise operators: |, &amp;, ~, ^</p>
 </li>
 <li>
 <p>Work with binary files</p>
@@ -55,28 +51,32 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_four_letter_words">1. Four letter words</h2>
+<h2 id="_tiny_bitmaps">1. Tiny Bitmaps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the program, <code>word.c</code>, implement a program that asks the user for a 4-letter word
-and stores the characters within a single <code>unsigned int</code>.</p>
+<p>A <a href="https://sneslab.net/wiki/Graphics_Format">1bpp</a>, or 1-bit-per-pixel,
+sprite stores a grid of black and white pixels using a single bit. 0 denotes
+white and 1 denotes black.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://sneslab.net/wiki/File:saa03_1bpp.png" alt="File:saa03 1bpp" width="400px"></span></p>
+</div>
+<div class="paragraph">
+<p>In the program, <code>bitmap.c</code>, implement a program that reads in a single 64-bit
+unsigned integer (e.g. <code>unsigned long</code>) and outputs it as an 8x8 1bpp sprite.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ <strong>./word</strong>
-Enter 4 characters: love
-Debug: e = 0x00000065
-Debug: v = 0x00007600
-Debug: o = 0x006F0000
-Debug: l = 0x6C000000
-Your number is: 1819244133 (0x6c6f7665)
-$ <strong>./word</strong>
-Enter 4 characters: !@#$
-Debug: $ = 0x00000024
-Debug: # = 0x00002300
-Debug: @ = 0x00400000
-Debug: ! = 0x21000000
-Your number is: 557851428 (0x21402324)
+<pre class="highlight"><code>$ <strong>./bitmap < bitmap1.txt</strong>
+Image (unsigned long): ff818181818181ff
+@ @ @ @ @ @ @ @
+@             @
+@             @
+@             @
+@             @
+@             @
+@             @
+@ @ @ @ @ @ @ @
 ----</code></pre>
 </div>
 </div>
@@ -86,65 +86,31 @@ Your number is: 557851428 (0x21402324)
 <div class="ulist">
 <ul>
 <li>
-<p>You can assume the user enters a valid 4-letter word</p>
+<p>Your program should use a bitmask! To generate a 64-bit mask that obtains the left-most bit, do <code>0x1ul &lt;&lt; 63</code>. The <code>ul</code> indicates an <code>unsigned long</code> value. <code>0x1</code> is the number one in hexadecimal.</p>
 </li>
 <li>
-<p>For debugging, print the hexadecimal values of each character, shifted to its correct spot</p>
+<p>The bitmap files store the values as hexadecimal values. To read them in, do <code>unsigned long img; scanf(" %lx", &amp;img);</code>. Use <code>%lx</code> for printf also.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_binary_to_ascii">2. Binary to ASCII</h2>
+<h2 id="_write_ppm">2. Write PPM</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the program, <code>binarychar.c</code>, implement a program that asks the user for an 8-bit
-binary number and outputs the corresponding character.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>$ <strong>make binarychar</strong>
-gcc -g -Wall -Wvla -Werror binarychar.c -o binarychar
-$ <strong>./binarychar</strong>
-Enter 8 bits: 01100001
-Your character is: a
-$ <strong>./binarychar</strong>
-Enter 8 bits: 01111100
-Your character is: |</code></pre>
-</div>
+<p>Implement a new function, <code>write_ppm</code>, defined in <code>write_ppm.c</code>.
+Similarly to <a href="asst04.html">Assignment 04</a>, you should choose one definition of <code>write_ppm</code> to
+implement, depending on whether you use either a "flat array" or an "array of arrays" to store your pixels.</p>
 </div>
 <div class="paragraph">
-<p>Requirements/Hints:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>You can assume that the user enters a valid 8-bit binary number</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_read_raw">3. Read raw</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In the file, <code>read_ppm.c</code>, implement a modified version of your PPM reader from
-<a href="asst04.html">Assignment 04</a> that reads PPM files in <em>binary</em> format,
-rather than <em>ascii</em> format.</p>
-</div>
-<div class="paragraph">
-<p>In raw format, the header information is still ASCII (although the magic number is "P6", not "P3"),
-but the pixel data is in binary format. Use <code>fread</code> to read in the pixels.</p>
-</div>
-<div class="paragraph">
-<p>Use <code>test_ppm.c</code> to again test that your reader is working</p>
+<p>The file, <code>test_ppm.c</code>, tests your write function. If it is working correctly, you should
+see the following output.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>$ <strong>make test_ppm</strong>
-gcc -g -Wall -Wvla -Werror test_ppm.c read_ppm.c -o test_ppm
+gcc -g -Wall -Wvla -Werror test_ppm.c write_ppm.C read_ppm.c -o test_ppm
 $ <strong>./test_ppm</strong>
 Testing file feep-raw.ppm: 4 4
 (0,0,0) (100,0,0) (0,0,0) (255,0,255)
@@ -159,20 +125,14 @@ Testing file feep-raw.ppm: 4 4
 <div class="ulist">
 <ul>
 <li>
-<p>Remember to open the file with "rb", not "r"</p>
-</li>
-<li>
-<p>Use <code>fread</code> to copy all the pixel data into your array as one large block</p>
-</li>
-<li>
-<p>If you needed to modify the function signature in <code>ppm_read</code> because you allocated an array of arrays, be sure to update <code>read_ppm.h</code> here as well. <strong>Just be careful to keep the new definition of ppm_pixel</strong>!</p>
+<p>Use <code>fprintf</code> to write the header and <code>fwrite</code> to write the binary Data to your file.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_glitch">4. Glitch</h2>
+<h2 id="_glitch">3. Glitch</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://en.wikipedia.org/wiki/Glitch_art">Glitch Art</a> is the practice of leveraging technological errors for artistic purposes. Some cool examples can be found here by <a href="https://mobile.twitter.com/glitchartbot">glitchartbot</a>.</p>
@@ -181,9 +141,6 @@ Testing file feep-raw.ppm: 4 4
 <div class="content">
 <img src="https://www.joelatimer.com/wp-content/uploads/2019/09/JoeLatimer.com-Blog-Featured-Image-Landscape-08-31-19.jpg" alt="JoeLatimer.com Blog Featured Image Landscape 08 31 19" height="300px">
 </div>
-</div>
-<div class="paragraph">
-<p>First, implement a new function, <code>write_ppm</code>, defined in <code>read_ppm.c</code>. Similarly to <a href="asst04.html">Assignment 04</a>, you should change the definition of <code>write_ppm</code> if you use an "array of arrays" to store your pixels. <strong>Be careful that you do not change the definition of ppm_pixel!</strong></p>
 </div>
 <div class="paragraph">
 <p>Then write a program, <code>glitch.c</code>, that reads in a PPM file and "glitches" it. Your program should save the modified PPM in a new file with the suffix "-glitch". For example, if you load in the file
@@ -230,12 +187,6 @@ Writing file monalisa-glitch.ppm</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Implement a function to write your PPM as a <em>binary</em> file, e.g. with the option "wb".</p>
-</li>
-<li>
-<p>Use <code>fwrite</code> to write to your file.</p>
-</li>
-<li>
 <p>Save the result to <code>&lt;filename&gt;-glitch.ppm</code></p>
 </li>
 <li>
@@ -280,14 +231,14 @@ Writing file monalisa-glitch.ppm</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_submit_your_work">5. Submit your work</h2>
+<h2 id="_submit_your_work">4. Submit your work</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Push you work to github to submit your work.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>$ cd A01
+<pre class="highlight"><code>$ cd {ASST}
 $ git status
 $ git add *.c
 $ git status
@@ -302,7 +253,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-23 09:51:30 -0400
+Last updated 2022-10-12 16:44:20 -0400
 </div>
 </div>
 </body>

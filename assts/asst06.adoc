@@ -188,7 +188,7 @@ Requirements/Hints:
 * Re-use your implementation of `read_ppm` from link:asst05.html[Assignment 05].
 * Output the size of the image along with the maximum number of characters it can store
 * For debugging, try printing out values in hex format, e.g. `printf("%02X", c);`
-* `ppm_pixel` (defined in `read_ppm.h`) allows you to access each color either by name, or by array. You may find it simpler to use the array representation for this question.
+* This question is a little easier if you use a 1D array because you can cast the `struct ppm_pixel*` array to an `unsigned char*` array.
 
 = Encode
 
@@ -215,7 +215,6 @@ Requirements/Hints:
 * Re-use your implementation of `read_ppm` from link:asst05.html[Assignment 05].
 * Output the size of the image along with the maximum number of characters it can store
 * For debugging, try printing out values in hex format, e.g. `printf("%02X", c);`
-* `ppm_pixel` (defined in `read_ppm.h`) allows you to access each color either by name, or by array. You may find it simpler to use the array representation for this question.
 
 = Submit your work
 

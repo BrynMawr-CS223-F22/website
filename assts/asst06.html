@@ -238,7 +238,7 @@ Max number of characters in the image: 6
 <p>For debugging, try printing out values in hex format, e.g. <code>printf("%02X", c);</code></p>
 </li>
 <li>
-<p><code>ppm_pixel</code> (defined in <code>read_ppm.h</code>) allows you to access each color either by name, or by array. You may find it simpler to use the array representation for this question.</p>
+<p>This question is a little easier if you use a 1D array because you can cast the <code>struct ppm_pixel*</code> array to an <code>unsigned char*</code> array.</p>
 </li>
 </ul>
 </div>
@@ -288,9 +288,6 @@ Writing file feep-raw-encoded.ppm</code></pre>
 <li>
 <p>For debugging, try printing out values in hex format, e.g. <code>printf("%02X", c);</code></p>
 </li>
-<li>
-<p><code>ppm_pixel</code> (defined in <code>read_ppm.h</code>) allows you to access each color either by name, or by array. You may find it simpler to use the array representation for this question.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -318,7 +315,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-23 09:51:30 -0400
+Last updated 2022-10-13 09:51:07 -0400
 </div>
 </div>
 </body>

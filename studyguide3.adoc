@@ -48,7 +48,7 @@ to give feedback on your responses.
 |===
 |Expression
 |Result
-|Overflow or not?
+//|Overflow or not?
 
 |3 << 8
 |{nbsp} +
@@ -56,7 +56,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 
 |2 & 7
 |{nbsp} +
@@ -64,7 +64,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 
 |2 + 7
 |{nbsp} +
@@ -72,7 +72,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 
 |9 + 7
 |{nbsp} +
@@ -80,7 +80,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 
 |11-9
 |{nbsp} +
@@ -88,7 +88,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 |=== 
 
 5) Convert the following hexadecimal number to a floating-point number: `0x 3f c0 00 00`
@@ -99,7 +99,7 @@ to give feedback on your responses.
 |===
 |Expression
 |Result
-|Overflow or not?
+//|Overflow or not?
 
 |-6 >> 3
 |{nbsp} +
@@ -107,7 +107,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 
 |2 ^ 7
 |{nbsp} +
@@ -115,7 +115,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 
 |2 + 7
 |{nbsp} +
@@ -123,7 +123,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 
 |5 - 7
 |{nbsp} +
@@ -131,7 +131,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 
 |-4-1
 |{nbsp} +
@@ -139,7 +139,7 @@ to give feedback on your responses.
 {nbsp} +
 {nbsp} +
 {nbsp} +
-|yes/no
+//|yes/no
 |=== 
 
 7) Consider the following struct. 

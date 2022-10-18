@@ -44,7 +44,7 @@ to give feedback on your responses.
 
 4) Compute the results of the following decimal expressions using 4-bit unsigned integers. Indicate whether there is overflow. Express your final answer in hexadecimal. Show your work.
 
-[cols="1,2,1"]
+[cols="1,5"]
 |===
 |Expression
 |Result
@@ -95,7 +95,7 @@ to give feedback on your responses.
 
 6) Compute the results of the following decimal expressions using 4-bit signed integers. Indicate whether there is overflow. Express your final answer in hexadecimal. Show your answer.
 
-[cols="1,2,1"]
+[cols="1,5"]
 |===
 |Expression
 |Result

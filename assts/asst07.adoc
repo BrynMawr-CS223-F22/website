@@ -7,7 +7,7 @@ include::header.adoc[]
 
 = {title}
 
-**Due Thursday, , before midnight**
+**Due Thursday, November 3rd, before midnight**
 
 The goals for this assignment are:
 
@@ -88,7 +88,7 @@ value for each of the given operands.
 {nbsp} +
 |
 
-|0xf02(,%rsi,2)
+|0xf00(,%rsi,2)
 |
 |{nbsp} +
 {nbsp} +
@@ -280,8 +280,6 @@ Please show the before and after state (cross out old values).
 !0xe68  ! 
 !===
 |===
-
-Modify the above contents to execute the instruction `push %rbp`. What two steps does `push %rbp` do?
 
 2) What are the contents of registers and the stack after executing `mov %rsp, %rbp`?
 Please show the before and after state (cross out old values).
@@ -569,5 +567,5 @@ placed in `%esi`. What value will %esi containin?
 
 This is a written assignment. Please submit a hard-copy in either Lecture or
 Lab, or submit to either Nina Fichera's office (Park 348) or Aline Normoyle's
-office (Park 204). 
+office (Park 200B). 
 

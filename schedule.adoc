@@ -90,7 +90,7 @@
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 11.1-11.3] 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 11.5, Malloc Handout] 
-* link:assts/.html[Assignment 07]: Due Nov 3
+* link:assts/asst07.html[Assignment 07]: Due Nov 3
 * Lab: **Jam 03**: link:studyguide3.html[Study Guide 3]
 
 //-----------------------------

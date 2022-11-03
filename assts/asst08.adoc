@@ -15,13 +15,13 @@ The goals for this assignment are:
 * More linked list practice
 * Work with void* types and pointer arithmetic
 * Better understand malloc and free, particularly the use of the free list
-* Understand how fragmentation can occur when re-using memory
 
 :sectnums:
 
 = Description
 
-In this assignment, we will compare and contrast different implementations of malloc and free. 
+In this assignment, we will implement your own version of malloc and free, and 
+compare its performance to the default implementation. 
 
 For this assignment, you should submit both 
 
@@ -34,84 +34,36 @@ Both should be checked into github. `adoc` is an Asciidoctor file. link:https://
 
 Your basecode includes the following source files
 
-* `benchmark1.c` - Benchmark program that generates random, uniform memory requests
-* `benchmark2.c` - A more realistic benchmark program
+* `benchmark.c` - A benchmark program
 * `rand.c` - Utilities for generating random sizes of memory
-* `sbrk.c` - Replaces sbrk with a version based on mmap 
+* `sbrk.c` - Utilities for extending the amount of memory allocated to a program
 * `mylloc_list.c` - Malloc/free implementation that implements a free list with first-fit strategy (corresponds to `mhysa.c` in reading)
 
 NOTE: This assignment is based on the reading: "My malloc: mylloc and mhysa" by
 Johan Montelius, posted to Slack. You should complete the reading and finish the
 implementation of `mylloc_list.c` _before_ starting the assignment. 
 
-= README
+= Benchmarks
 
-In your README.adoc, under the section "Hardware specification", answer the following questions:
-
-. Where did your run your tests? A laptop, or goldengate?
-. What are the performance specifications of the machine: number and speed of processors, size of RAM? (use `lscpu` and `free -m`)
-
-= Allocations
-
-In this question, you will analyze the allocations made by `mylloc_list.c`.
-
-[discrete]
-== Simple
-
-Write a program, `print.c`, that 
-
-. calls `sbrk(0)`
-. prints the initial top of the heap
-. calls `sbrk(0)` again. 
-. prints the new top of the heap allong with the increase in bytes (not kBytes!).
-
-[source]
-----
-$ ./print
-The initial top of the heap is 0x7fb924cb1000.
-The current top of the heap is 0x7fb924cb1410.
-Increased by 1040 (0x410) bytes
-----
-
-In your README.adoc, under the heading "Allocations", answer the following questions: 
-
-. Where does the increase in 1040 bytes come from?
-. Why is the value 1040 bytes?
-
-[discrete]
-== Reallocate
-
-Write a program, `reallocate.c`, that repeatedly malloc and frees 100 bytes of memory. 
-Your program should contain a loop that mallocs and frees at least 10 times.
-
-In the section titled "Allocations" in your document, answer the following question:
-
-. How many bytes does mylloc_list allocate when the program ends? In your document, explain why this amount makes sense.
-
-= Fragmentation
-
-//In this question, you will compare the amount of _internal_ and _external_ fragmentation that occurs when you use different block-selection strategies:
-//
-//* first-fit: use the first block that's large enough to accomodate the request
-//* worst-fit: use the largest block to accomodate the request 
-//* best-fit: use the smallest block that can accomodate the request
-
-In this question, you will analyze the unused memory that occurs when we use a first-fit strategy.
+In this question, you will analyze the unused memory that occurs when we use a *first-fit strategy*.
 You will need to make the following changes to `mylloc_list.c`
 
 * To keep track of your fragmentation, extend the record `struct chunk` to keep track of both the size of 
 the chunk and the amount of memory currently in use by the chunk. For example, suppose you allocate a 
 chunk with size 128 bytes but later re-use the chunk for 96 bytes of data. The size of the chunk is 128 
 but the amount in-use is 96.
-//* Add an option to `mylloc_list.c` to change the strategy for choosing chunks. The reading uses first-fit. 
+
 * Implement the function, `fragstats(void** buffers, int len)` located in `mylloc_list.c`, that computes
-** the total number of free chunks allocated 
-** the total number of in-use chunks allocated 
+** *total blocks*: the total number of free chunks allocated 
+** *the total number of in-use chunks allocated 
 ** the largest, smallest, and average unused memory across all used chunks
 ** the total unused memory across all used chunks
 ** the largest, smallest, and average sizes of all free chunks 
 
-NOTE: In `fragstats`, `buffers` contains the memory chunks that are currently being used. `flist` contains the memory chunks that are not currently in use.
+NOTE: In `fragstats`, `buffers` contains the memory chunks that are currently being used. 
+`flist` contains the memory chunks that are not currently in use.
+
+Your program should produce the following output.
 
 [source]
 ----
@@ -141,10 +93,16 @@ External unused: total: 311165 average: 2991.0 smallest: 151 largest: 3999
 
 NOTE: Above, "internal unused" analyzes the unused memory in `buffers`; "external unused" analyzes unused memory in `free list`
 
-In README.adoc, under the section titled "Fragmentation" in your document, answer the folowing questions:
+= README
 
-. What is fragmentation? What is the difference between internal and external fragmentation?
-. Include your output in the README.adoc
+In README.adoc, include the folowing information:
+
+. Your output in the README.adoc from running the benchmark with _your_ implementation
+. Your output in the README.adoc from running the benchmark with the _default_ implementation
+
+And then answer the following questions:
+
+. 
 
 = Submit your work
 

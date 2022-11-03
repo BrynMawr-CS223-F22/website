@@ -90,7 +90,7 @@
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 11.1-11.3] 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 11.5, Malloc Handout] 
-* link:assts/asst07.html[Assignment 07]: Due Nov 3
+* link:assts/asst07.html[Assignment 07]: Due Nov 7
 * Lab: **Jam 03**: link:studyguide3.html[Study Guide 3]
 
 //-----------------------------
@@ -106,7 +106,7 @@
 |*The operating system* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 13, skip section 13.3] 
-* link:assts/.html[Assignment 08]: Due Nov 10
+* link:assts/.html[Assignment 08]: Due Nov 17
 * Lab: **Jam 03 Redux; Jam 04 Study Guide**
 
 //-----------------------------
@@ -115,7 +115,7 @@
 |*Inter-process communication, Threads I* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 13.4-13.6, Chapter 14] 
-* link:assts/.html[Assignment 09]: Due Nov 17 
+* link:assts/.html[Assignment 09]: Due Dec 1 
 * **Jam 04**: link:studyguide4.html[Study Guide 4]
 
 //-----------------------------
@@ -124,7 +124,7 @@
 |*Inter-process communication, Threads II* 
 
 * *No class Thursday, Nov 24 (Thanksgiving)*
-* link:assts/.html[Assignment 10]: Due Dec 1
+* link:assts/.html[Assignment 10]: Due Dec 8
 * **Jam 04 Redux**
 
 //-----------------------------

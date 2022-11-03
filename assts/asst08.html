@@ -17,10 +17,9 @@
 <li><a href="#_assignment_8_hold_on_to_your_memories">Assignment 8: Hold on to your memories</a></li>
 <li><a href="#_description">1. Description</a></li>
 <li><a href="#_code_setup">2. Code setup</a></li>
-<li><a href="#_readme">3. README</a></li>
-<li><a href="#_allocations">4. Allocations</a></li>
-<li><a href="#_fragmentation">5. Fragmentation</a></li>
-<li><a href="#_submit_your_work">6. Submit your work</a></li>
+<li><a href="#_benchmarks">3. Benchmarks</a></li>
+<li><a href="#_readme">4. README</a></li>
+<li><a href="#_submit_your_work">5. Submit your work</a></li>
 </ul>
 </div>
 </div>
@@ -45,9 +44,6 @@
 <li>
 <p>Better understand malloc and free, particularly the use of the free list</p>
 </li>
-<li>
-<p>Understand how fragmentation can occur when re-using memory</p>
-</li>
 </ul>
 </div>
 </div>
@@ -56,7 +52,8 @@
 <h2 id="_description">1. Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this assignment, we will compare and contrast different implementations of malloc and free.</p>
+<p>In this assignment, we will implement your own version of malloc and free, and
+compare its performance to the default implementation.</p>
 </div>
 <div class="paragraph">
 <p>For this assignment, you should submit both</p>
@@ -85,16 +82,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>benchmark1.c</code> - Benchmark program that generates random, uniform memory requests</p>
-</li>
-<li>
-<p><code>benchmark2.c</code> - A more realistic benchmark program</p>
+<p><code>benchmark.c</code> - A benchmark program</p>
 </li>
 <li>
 <p><code>rand.c</code> - Utilities for generating random sizes of memory</p>
 </li>
 <li>
-<p><code>sbrk.c</code> - Replaces sbrk with a version based on mmap</p>
+<p><code>sbrk.c</code> - Utilities for extending the amount of memory allocated to a program</p>
 </li>
 <li>
 <p><code>mylloc_list.c</code> - Malloc/free implementation that implements a free list with first-fit strategy (corresponds to <code>mhysa.c</code> in reading)</p>
@@ -118,92 +112,10 @@ implementation of <code>mylloc_list.c</code> <em>before</em> starting the assign
 </div>
 </div>
 <div class="sect1">
-<h2 id="_readme">3. README</h2>
+<h2 id="_benchmarks">3. Benchmarks</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In your README.adoc, under the section "Hardware specification", answer the following questions:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Where did your run your tests? A laptop, or goldengate?</p>
-</li>
-<li>
-<p>What are the performance specifications of the machine: number and speed of processors, size of RAM? (use <code>lscpu</code> and <code>free -m</code>)</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_allocations">4. Allocations</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In this question, you will analyze the allocations made by <code>mylloc_list.c</code>.</p>
-</div>
-<h3 id="_simple" class="discrete">Simple</h3>
-<div class="paragraph">
-<p>Write a program, <code>print.c</code>, that</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>calls <code>sbrk(0)</code></p>
-</li>
-<li>
-<p>prints the initial top of the heap</p>
-</li>
-<li>
-<p>calls <code>sbrk(0)</code> again.</p>
-</li>
-<li>
-<p>prints the new top of the heap allong with the increase in bytes (not kBytes!).</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>$ ./print
-The initial top of the heap is 0x7fb924cb1000.
-The current top of the heap is 0x7fb924cb1410.
-Increased by 1040 (0x410) bytes</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In your README.adoc, under the heading "Allocations", answer the following questions:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Where does the increase in 1040 bytes come from?</p>
-</li>
-<li>
-<p>Why is the value 1040 bytes?</p>
-</li>
-</ol>
-</div>
-<h3 id="_reallocate" class="discrete">Reallocate</h3>
-<div class="paragraph">
-<p>Write a program, <code>reallocate.c</code>, that repeatedly malloc and frees 100 bytes of memory.
-Your program should contain a loop that mallocs and frees at least 10 times.</p>
-</div>
-<div class="paragraph">
-<p>In the section titled "Allocations" in your document, answer the following question:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>How many bytes does mylloc_list allocate when the program ends? In your document, explain why this amount makes sense.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_fragmentation">5. Fragmentation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In this question, you will analyze the unused memory that occurs when we use a first-fit strategy.
+<p>In this question, you will analyze the unused memory that occurs when we use a <strong>first-fit strategy</strong>.
 You will need to make the following changes to <code>mylloc_list.c</code></p>
 </div>
 <div class="ulist">
@@ -219,10 +131,10 @@ but the amount in-use is 96.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>the total number of free chunks allocated</p>
+<p><strong>total blocks</strong>: the total number of free chunks allocated</p>
 </li>
 <li>
-<p>the total number of in-use chunks allocated</p>
+<p>*the total number of in-use chunks allocated</p>
 </li>
 <li>
 <p>the largest, smallest, and average unused memory across all used chunks</p>
@@ -245,10 +157,14 @@ but the amount in-use is 96.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In <code>fragstats</code>, <code>buffers</code> contains the memory chunks that are currently being used. <code>flist</code> contains the memory chunks that are not currently in use.
+In <code>fragstats</code>, <code>buffers</code> contains the memory chunks that are currently being used.
+<code>flist</code> contains the memory chunks that are not currently in use.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Your program should produce the following output.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -288,23 +204,34 @@ Above, "internal unused" analyzes the unused memory in <code>buffers</code>; "ex
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_readme">4. README</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>In README.adoc, under the section titled "Fragmentation" in your document, answer the folowing questions:</p>
+<p>In README.adoc, include the folowing information:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>What is fragmentation? What is the difference between internal and external fragmentation?</p>
+<p>Your output in the README.adoc from running the benchmark with <em>your</em> implementation</p>
 </li>
 <li>
-<p>Include your output in the README.adoc</p>
+<p>Your output in the README.adoc from running the benchmark with the <em>default</em> implementation</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>And then answer the following questions:</p>
+</div>
+<div class="paragraph">
+<p>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_submit_your_work">6. Submit your work</h2>
+<h2 id="_submit_your_work">5. Submit your work</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Submit both your code <strong>and</strong> a brief report containing your results in your README.</p>
@@ -328,7 +255,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-23 09:51:30 -0400
+Last updated 2022-11-02 20:57:45 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

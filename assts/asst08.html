@@ -17,8 +17,12 @@
 <li><a href="#_assignment_8_hold_on_to_your_memories">Assignment 8: Hold on to your memories</a></li>
 <li><a href="#_description">1. Description</a></li>
 <li><a href="#_code_setup">2. Code setup</a></li>
-<li><a href="#_benchmarks">3. Benchmarks</a></li>
-<li><a href="#_readme">4. README</a></li>
+<li><a href="#_mylloc_list">3. mylloc_list</a></li>
+<li><a href="#_memory_statistics">4. Memory statistics</a>
+<ul class="sectlevel2">
+<li><a href="#_readme_due_nov_17th_in_class">4.1. README (<strong>Due Nov 17th in class</strong>)</a></li>
+</ul>
+</li>
 <li><a href="#_submit_your_work">5. Submit your work</a></li>
 </ul>
 </div>
@@ -36,10 +40,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>More linked list practice</p>
+<p>Understand void* types and pointer arithmetic</p>
 </li>
 <li>
-<p>Work with void* types and pointer arithmetic</p>
+<p>More linked list practice</p>
 </li>
 <li>
 <p>Better understand malloc and free, particularly the use of the free list</p>
@@ -52,8 +56,8 @@
 <h2 id="_description">1. Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this assignment, we will implement your own version of malloc and free, and
-compare its performance to the default implementation.</p>
+<p>In this assignment, we will implement our own version of malloc and free based on
+"first-fit" strategy and analyze its performance.</p>
 </div>
 <div class="paragraph">
 <p>For this assignment, you should submit both</p>
@@ -64,12 +68,9 @@ compare its performance to the default implementation.</p>
 <p>your code, and</p>
 </li>
 <li>
-<p>a brief report, as a README.adoc file</p>
+<p>a written report, <strong>due in class, November 17th</strong></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Both should be checked into github. <code>adoc</code> is an Asciidoctor file. <a href="https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/">Click here for a reference</a>.</p>
 </div>
 </div>
 </div>
@@ -82,7 +83,7 @@ compare its performance to the default implementation.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>benchmark.c</code> - A benchmark program</p>
+<p><code>mylloc_list.c</code> - Malloc/free implementation that implements a free list with first-fit strategy (corresponds to <code>mhysa.c</code> in reading)</p>
 </li>
 <li>
 <p><code>rand.c</code> - Utilities for generating random sizes of memory</p>
@@ -91,7 +92,10 @@ compare its performance to the default implementation.</p>
 <p><code>sbrk.c</code> - Utilities for extending the amount of memory allocated to a program</p>
 </li>
 <li>
-<p><code>mylloc_list.c</code> - Malloc/free implementation that implements a free list with first-fit strategy (corresponds to <code>mhysa.c</code> in reading)</p>
+<p><code>memstats.c</code> - A benchmark program</p>
+</li>
+<li>
+<p><code>unit_tests.c</code> - Unit tests for your malloc/free implementation</p>
 </li>
 </ul>
 </div>
@@ -112,121 +116,236 @@ implementation of <code>mylloc_list.c</code> <em>before</em> starting the assign
 </div>
 </div>
 <div class="sect1">
-<h2 id="_benchmarks">3. Benchmarks</h2>
+<h2 id="_mylloc_list">3. mylloc_list</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this question, you will analyze the unused memory that occurs when we use a <strong>first-fit strategy</strong>.
-You will need to make the following changes to <code>mylloc_list.c</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>To keep track of your fragmentation, extend the record <code>struct chunk</code> to keep track of both the size of
-the chunk and the amount of memory currently in use by the chunk. For example, suppose you allocate a
-chunk with size 128 bytes but later re-use the chunk for 96 bytes of data. The size of the chunk is 128
-but the amount in-use is 96.</p>
-</li>
-<li>
-<p>Implement the function, <code>fragstats(void** buffers, int len)</code> located in <code>mylloc_list.c</code>, that computes</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>total blocks</strong>: the total number of free chunks allocated</p>
-</li>
-<li>
-<p>*the total number of in-use chunks allocated</p>
-</li>
-<li>
-<p>the largest, smallest, and average unused memory across all used chunks</p>
-</li>
-<li>
-<p>the total unused memory across all used chunks</p>
-</li>
-<li>
-<p>the largest, smallest, and average sizes of all free chunks</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-In <code>fragstats</code>, <code>buffers</code> contains the memory chunks that are currently being used.
-<code>flist</code> contains the memory chunks that are not currently in use.
-</td>
-</tr>
-</table>
+<p>In <code>mylloc_list.c</code>, implement malloc and free based on the reading.</p>
 </div>
 <div class="paragraph">
-<p>Your program should produce the following output.</p>
+<p>Recall that the reading steps you through implementing your own malloc/free
+based on a free list and a <em>first-fit</em> strategy.  This implementation uses a
+header to keep track of the memory requested from <code>sbrk</code>.  When we re-use memory
+that is freed, we typically will not re-use the entire block of memory. Modify
+the implementation from the reading to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Extend this header to keep track of both the requested size and the amount of memory
+currently used in the chunk.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>The initial top of the heap is 0x7f9b72266000.
-Total blocks: 143 Free: 85 Used: 58
-Internal unused: total: 95635 average: 1648.0 smallest: 6 largest: 3805
-External unused: total: 235487 average: 2770.0 smallest: 151 largest: 3999
-0
-The current top of the heap is 0x7f9b722d7e00.
-Increased by 455 (0x1c7) Kbyte
-Total blocks: 150 Free: 96 Used: 54
-Internal unused: total: 98140 average: 1817.0 smallest: 32 largest: 3898
-External unused: total: 280774 average: 2924.0 smallest: 151 largest: 3999
-1
-The current top of the heap is 0x7f9b722debb4.
-Increased by 482 (0x1e2) Kbyte
-Total blocks: 154 Free: 102 Used: 52
-Internal unused: total: 100518 average: 1933.0 smallest: 376 largest: 3961
-External unused: total: 302622 average: 2966.0 smallest: 151 largest: 3999
-2
-The current top of the heap is 0x7f9b722e2a6e.
-Increased by 498 (0x1f2) Kbyte
-Total blocks: 156 Free: 104 Used: 52
-Internal unused: total: 102407 average: 1969.0 smallest: 18 largest: 3895
-External unused: total: 311165 average: 2991.0 smallest: 151 largest: 3999</code></pre>
+<pre class="highlight"><code>struct chunk {
+  int size; // size of memory allocated from sbrk
+  int used; // *NEW*: amount currently in use
+  struct chunk *next;
+};</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Above, "internal unused" analyzes the unused memory in <code>buffers</code>; "external unused" analyzes unused memory in <code>free list</code>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Use the unit tests included with your assignment to test that your implementation is correct</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ <strong>make all</strong>
+gcc -g -Wall -Wvla -Werror memstats.c mylloc_list.c sbrk.c rand.c -o memstats -lm
+gcc -g -Wall -Wvla -Werror unit_tests.c mylloc_list.c sbrk.c rand.c -o unit_tests -lm
+$ <strong>./unit_tests</strong>
+Running tests...
+test 1: size 0 returns NULL: PASSED
+test 2: flist is NULL to start: PASSED
+test 3: flist is empty after first malloc: PASSED
+test 4: correct amount allocated: PASSED
+test 5: header size correct: PASSED
+test 6: header used correct: PASSED
+test 7: flist is non-empty after free: PASSED
+test 8: flist is empty: PASSED
+test9: correct amount allocated: PASSED
+test 10: header size correct: PASSED
+test 11: header used correct: PASSED
+test 12: flist is not empty: PASSED
+test 13: current-init correct size: PASSED
+test 14: header size correct: PASSED
+test 15: header used correct: PASSED
+test 16: flist's first node has correct size: PASSED
+test 17: flist is non-empty: PASSED
+test 18: flist's second node has correct size: PASSED</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_readme">4. README</h2>
+<h2 id="_memory_statistics">4. Memory statistics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In README.adoc, include the folowing information:</p>
+<p>In <code>memstats.c</code>, implement the function <code>memstats</code> to print the following information</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The total number of memory blocks allocated by malloc, along with</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The number of total blocks which are currently in-use</p>
+</li>
+<li>
+<p>The number of total blocks which are currently free</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The total amount of memory allocated by malloc, along with</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The total amount of memory currently in-use</p>
+</li>
+<li>
+<p>The total amount of memory currently free</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The amount of underutilised memory as a percentage. This is the percent of memory that is held in buffers but not being used.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, your function might produce the following output</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Total blocks: 8 Free blocks: 6 Used blocks: 2
+Total memory allocated: 9665 Free memory: 4427 Used memory: 5238
+Underutilized memory: 0.48</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You are given code to simulate many random allocations and frees. After
+implementing your function, you should get the following output.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ <strong>./memstats</strong>
+Starting test..
+The initial top of the heap is 0x7feffe84d010.
+---------------
+0
+Allocating 452 bytes at index 0
+Allocating 1042 bytes at index 4
+Allocating 45 bytes at index 1
+Freeing index 0
+Allocating 68 bytes at index 0
+Freeing index 1
+Freeing index 0
+Allocating 127 bytes at index 3
+Allocating 1141 bytes at index 2
+Allocating 89 bytes at index 1
+The new top of the heap is 0x7feffe84db31.
+Increased by 2849 (0xb21) bytes
+Total blocks: 5 Free blocks: 1 Used blocks: 4
+Total memory allocated: 2769 Free memory: 45 Used memory: 2724
+Underutilized memory: 0.12
+---------------
+1
+Freeing index 3
+Allocating 47 bytes at index 0
+Freeing index 4
+Freeing index 1
+Freeing index 2
+Freeing index 0
+Allocating 3426 bytes at index 1
+Freeing index 1
+Allocating 39 bytes at index 2
+Allocating 163 bytes at index 4
+The new top of the heap is 0x7feffe84e8a3.
+Increased by 3442 (0xd72) bytes
+Total blocks: 6 Free blocks: 4 Used blocks: 2
+Total memory allocated: 6195 Free memory: 2317 Used memory: 3878
+Underutilized memory: 0.95
+---------------
+2
+Allocating 1658 bytes at index 3
+Allocating 1812 bytes at index 0
+Freeing index 3
+Allocating 39 bytes at index 3
+Allocating 156 bytes at index 1
+Freeing index 3
+Freeing index 1
+Freeing index 4
+Freeing index 2
+Allocating 921 bytes at index 1
+The new top of the heap is 0x7feffe84f651.
+Increased by 3502 (0xdae) bytes
+Total blocks: 8 Free blocks: 6 Used blocks: 2
+Total memory allocated: 9665 Free memory: 4427 Used memory: 5238
+Underutilized memory: 0.48
+Time is 4.1e-05</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_readme_due_nov_17th_in_class">4.1. README (<strong>Due Nov 17th in class</strong>)</h3>
+<div class="paragraph">
+<p>Read this section and answer the corresponding questions. We will visualize the execution of <code>memstats.c</code> for Round 1.
+When the program starts, we have no buffers allocated and the free list is empty.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/memstats0.png" alt="memstats0"></span></p>
+</div>
+<div class="paragraph">
+<p>After the first 3 allocations, the buffers and free list look as follows:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/memstats1.png" alt="memstats1"></span></p>
+</div>
+<div class="paragraph">
+<p>After the next iteration, we have</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/memstats2.png" alt="memstats2"></span></p>
+</div>
+<div class="paragraph">
+<p>After the next iteration, we have
+<span class="image"><img src="img/memstats3.png" alt="memstats3"></span></p>
+</div>
+<div class="paragraph">
+<p>After the next iteration, we have
+<span class="image"><img src="img/memstats4.png" alt="memstats4"></span></p>
+</div>
+<div class="paragraph">
+<p>At the end of round 1, the buffers and free list look as follows</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="img/memstats5.png" alt="memstats5"></span></p>
+</div>
+<div class="paragraph">
+<p>Answer the following questions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Your output in the README.adoc from running the benchmark with <em>your</em> implementation</p>
+<p>Why is the total memory allocated equal to 2769 bytes?</p>
 </li>
 <li>
-<p>Your output in the README.adoc from running the benchmark with the <em>default</em> implementation</p>
+<p>If the total memory is equal to 2769 bytes, why did the heap increase by 2849 bytes?</p>
+</li>
+<li>
+<p>Why is the underutilized memory 12%?</p>
+</li>
+<li>
+<p>Draw the buffers and free list after round 1</p>
+</li>
+<li>
+<p>Draw the buffers and free list after round 2</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>And then answer the following questions:</p>
-</div>
-<div class="paragraph">
-<p>.</p>
 </div>
 </div>
 </div>
@@ -234,7 +353,7 @@ Above, "internal unused" analyzes the unused memory in <code>buffers</code>; "ex
 <h2 id="_submit_your_work">5. Submit your work</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Submit both your code <strong>and</strong> a brief report containing your results in your README.</p>
+<p>Submit both your code (by midnight) <strong>and</strong> your written questions (due in class Thursday).</p>
 </div>
 <div class="paragraph">
 <p>1) Push your code work to github</p>
@@ -255,7 +374,7 @@ $ git status</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-11-02 20:57:45 -0400
+Last updated 2022-11-12 12:20:35 -0500
 </div>
 </div>
 <script type="text/x-mathjax-config">

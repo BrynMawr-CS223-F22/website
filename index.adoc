@@ -13,8 +13,8 @@ include::header.adoc[]
 Instructor: link:https://www.cs.brynmawr.edu/~alinen[Aline Normoyle]
 
 [.anns]
-* Current Agenda: link:#week09[Week9]
-* link:assts/asst07.html[Assignment 07]: *Due November 7th 5PM* is posted.
+* Current Agenda: link:#week11[Week 11]
+* link:assts/asst08.html[Assignment 08]: *Due November 17th*. Code is due at midnight. Written portion is due in class.
 
 == Course Info
 

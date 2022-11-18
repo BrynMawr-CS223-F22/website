@@ -121,7 +121,7 @@
 //-----------------------------
 |12
 |Nov 22 anchor:week13[]
-|*Inter-process communication, Threads II* 
+|*Inter-process communication, Threads I* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 14] 
 * *No class Thursday, Nov 24 (Thanksgiving)*
@@ -130,7 +130,7 @@
 //-----------------------------
 |13
 |Nov 29,31 anchor:week14[]
-|*Threads III* 
+|*Threads II* 
 
 * link:assts/asst10.html[Assignment 10]: Due Dec 8
 * Lab: **Jam 05**, link:studyguide5.html[Study Guide 5]

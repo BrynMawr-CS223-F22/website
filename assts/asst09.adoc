@@ -5,6 +5,7 @@ include::header.adoc[]
 :Date:    2020-08-15
 :Revision: 0.1
 :stem: latexmath
+:ASST: A09
 
 = {title}
 
@@ -15,6 +16,22 @@ The goals for this assignment are:
 * Implement an algorithm using multiple processes with fork()
 * Compare single- and multi-process implementation performance
 * Work with fork(), wait(), process ids, and shared memory
+
+[discrete]
+== Update your repository
+
+Do a *fetch upstream* to obtain the basecode for this assignment. 
+
+Using the command line
+
+* Open terminal and change your current directory to your assignment repository.
+* Run the command `git fetch upstream`
+* Run the command `git merge upstream/main`
+
+Your repository should now contain a new folder named `{ASST}`.
+
+The `fetch` and `merge` commands update your repository with any changes from the original.
+
 
 = Mandelbrot Set
 
@@ -176,6 +193,50 @@ Requirements and hints:
 * Your output filename should have the format `multi-mandelbrot-<size>-<timestamp>.ppm`. The timestamp can be obtained by calling `time(0)`.
 * Set a random seed to ensure that the color palette is different each time, e.g. `srand(time(0))` 
 * In your `README.adoc`, call `single_mandelbrot` with sizes of 100, 400, 800, 1000, and 2000. Record the number of seconds it takes to compute each image.
+
+[discrete]
+== Cleaning up leaked shared memory files
+
+If a program does not detatch and remove a shared memory file, the system can 
+run out of shared memory resources. We can clean up these files manually. 
+
+To check for shared memory files on your system, run the command `ipcs`
+
+[source,subs="quotes"]
+----
+$ **ipcs -m**
+
+_______ shared Memory Segments ________
+key        shmid      owner      perms      bytes      nattch     status
+0x00000000 4          alinen     644        41         0
+0x00000000 5          alinen     644        41         0
+0x00000000 6          alinen     644        41         0
+0x00000000 7          alinen     644        41         0
+---- 
+
+To remove a shared memory file, run the command `ipcrm -m <shmid>`.
+
+We can have given you a script, `shm_cleanup.sh`, that will remove all shared 
+memory files on your system.
+
+[source,subs="quotes"]
+----
+$ **ipcs -m**
+
+______ Shared Memory Segments ________
+key        shmid      owner      perms      bytes      nattch     status
+0x00000000 4          alinen     644        41         0
+0x00000000 5          alinen     644        41         0
+0x00000000 6          alinen     644        41         0
+0x00000000 7          alinen     644        41         0
+
+$ **./shm_cleanup.sh**
+$ **ipcs -m**
+
+______ Shared Memory Segments ________
+key        shmid      owner      perms      bytes      nattch     status
+----
+ 
 
 = Submit your work
 

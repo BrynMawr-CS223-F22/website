@@ -5,6 +5,7 @@ include::header.adoc[]
 :Date:    2020-08-15
 :Revision: 0.1
 :stem: latexmath
+:ASST: A08
 
 = {title}
 
@@ -15,6 +16,22 @@ The goals for this assignment are:
 * Understand void* types and pointer arithmetic
 * More linked list practice
 * Better understand malloc and free, particularly the use of the free list
+
+[discrete]
+== Update your repository
+
+Do a *fetch upstream* to obtain the basecode for this assignment. 
+
+Using the command line
+
+* Open terminal and change your current directory to your assignment repository.
+* Run the command `git fetch upstream`
+* Run the command `git merge upstream/main`
+
+Your repository should now contain a new folder named `{ASST}`.
+
+The `fetch` and `merge` commands update your repository with any changes from the original.
+
 
 :sectnums:
 

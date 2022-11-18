@@ -20,6 +20,21 @@ The goals for this assignment are:
 
 **All programs must run without memory errors and leaks!**
 
+[discrete]
+== Update your repository
+
+Do a *fetch upstream* to obtain the basecode for this assignment. 
+
+Using the command line
+
+* Open terminal and change your current directory to your assignment repository.
+* Run the command `git fetch upstream`
+* Run the command `git merge upstream/main`
+
+Your repository should now contain a new folder named `{ASST}`.
+
+The `fetch` and `merge` commands update your repository with any changes from the original.
+
 = Background: PPM
 
 link:http://netpbm.sourceforge.net/doc/ppm.html[PPM (Portable Pix Map)]

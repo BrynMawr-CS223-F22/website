@@ -4,6 +4,7 @@ include::header.adoc[]
 :Author Initials: ASN
 :Date:    2021-01-29
 :Revision: 0.1
+:ASST: A02
 
 = {title}
 
@@ -27,7 +28,7 @@ Using the command line
 * Run the command `git fetch upstream`
 * Run the command `git merge upstream/main`
 
-Your repository should now contain a new folder named `A02`.
+Your repository should now contain a new folder named `{ASST}`.
 
 The `fetch` and `merge` commands update your repository with any changes from the original.
 

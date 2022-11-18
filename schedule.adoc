@@ -112,10 +112,10 @@
 //-----------------------------
 |11
 |Nov 15,17 anchor:week12[]
-|*Inter-process communication, Threads I* 
+|*Processes and Inter-process communication (IPC)* 
 
-* Read: link:https://diveintosystems.org/singlepage/[Chapter 13.4-13.6, Chapter 14] 
-* link:assts/.html[Assignment 09]: Due Dec 1 
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 13.4-13.6] 
+* link:assts/asst09.html[Assignment 09]: Due Nov 28 
 * **Jam 04**: link:studyguide4.html[Study Guide 4]
 
 //-----------------------------
@@ -123,15 +123,17 @@
 |Nov 22 anchor:week13[]
 |*Inter-process communication, Threads II* 
 
+* Read: link:https://diveintosystems.org/singlepage/[Chapter 14] 
 * *No class Thursday, Nov 24 (Thanksgiving)*
-* link:assts/.html[Assignment 10]: Due Dec 8
-* **Jam 04 Redux**
+* **Jam 04 Redux; Jam 05 Study Guide**
 
 //-----------------------------
 |13
 |Nov 29,31 anchor:week14[]
 |*Threads III* 
 
+* link:assts/asst10.html[Assignment 10]: Due Dec 8
+* Lab: **Jam 05**, link:studyguide5.html[Study Guide 5]
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 14] 
 
 //-----------------------------
@@ -140,7 +142,6 @@
 |*Code Optimization* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 12] 
-* Lab: **Jam 05**, link:studyguide5.html[Study Guide 5]
 * link:studyguide-final.html[Final Study Guide]
 
 |===

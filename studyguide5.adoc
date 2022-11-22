@@ -13,92 +13,67 @@ Topics:
 
 Everything from link:studyguide4.html[Study Guide 4], plus
 
-* Compiling and linking
+//* Compiling and linking
 * Memory hierarchy, primary and secondary storage, caches, temporal and spatial locality
 * Advanced pointers, pointer arithmetic, void*, function pointers, pass by pointer
 * Implementations of malloc and free. sbrk()
 * The operating system, interrupts, traps, processes, virtual memory, zombies
 * fork(), wait(), pid, ps
-* Interprocess communication: signals, sockets, pipes, shared memory
-* Threads
-
-NOTE: You will not be asked to write a program that uses sockets, pipes, or shared memory but you should understand what they are and how/when they are used.
+* Interprocess communication: signals, shared memory
 
 = Practice questions
 
-== Compiling and linking
+//== Compiling and linking
+//
+//1) Short answers
+//
+//* What is the difference between compiling and linking?
+//* What is a library? When would you use one?
+//* What are differences between an application and a library?
+//* What is the difference between static and dynamic libraries? Why might you want to use one over the other?
+//* What does the pre-processor do?
+//* What is the purpose of compiling and linking?
+//
+//2) Ann-marie has the following errors when she tried to build. What type of error is it (compile, link, runtime, or logical)? How can she fix it?
+//
+//[source]
+//----
+///usr/bin/ld: /tmp/ccH1QHw0.o: in function `main':
+//thread-argv.c:(.text+0x1c4): undefined reference to `pthread_attr_setstacksize'
+///usr/bin/ld: thread-argv.c:(.text+0x2e4): undefined reference to `pthread_create'
+///usr/bin/ld: thread-argv.c:(.text+0x38d): undefined reference to `pthread_join'
+//collect2: error: ld returned 1 exit status
+//----
 
-1) Short answers
-
-* What is the difference between compiling and linking?
-* What is a library? When would you use one?
-* What are differences between an application and a library?
-* What is the difference between static and dynamic libraries? Why might you want to use one over the other?
-* What does the pre-processor do?
-* What is the purpose of compiling and linking?
-
-2) Ann-marie has the following errors when she tried to build. What type of error is it (compile, link, runtime, or logical)? How can she fix it?
-
-[source]
-----
-/usr/bin/ld: /tmp/ccH1QHw0.o: in function `main':
-thread-argv.c:(.text+0x1c4): undefined reference to `pthread_attr_setstacksize'
-/usr/bin/ld: thread-argv.c:(.text+0x2e4): undefined reference to `pthread_create'
-/usr/bin/ld: thread-argv.c:(.text+0x38d): undefined reference to `pthread_join'
-collect2: error: ld returned 1 exit status
-----
-
-3) Ann-marie has the following errors when she tries to build. What type of error is it (compile, link, runtime, or logical)? How can she fix it?
-
-[source]
-----
-thread-argv.c: In function ‘main’:
-thread-argv.c:71:7: warning: implicit declaration of function ‘pthread_attr_init’ [-Wimplicit-function-declaration]
-   71 |   s = pthread_attr_init(&attr);
-      |       ^~~~~~~~~~~~~~~~~
-thread-argv.c:76:9: warning: implicit declaration of function ‘pthread_attr_setstacksize’ [-Wimplicit-function-declaration]
-   76 |     s = pthread_attr_setstacksize(&attr, stack_size);
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~
-thread-argv.c:96:9: warning: implicit declaration of function ‘pthread_create’ [-Wimplicit-function-declaration]
-   96 |     s = pthread_create(&tinfo[tnum].thread_id, &attr,
-      |         ^~~~~~~~~~~~~~
-thread-argv.c:105:7: warning: implicit declaration of function ‘pthread_attr_destroy’ [-Wimplicit-function-declaration]
-  105 |   s = pthread_attr_destroy(&attr);
-      |       ^~~~~~~~~~~~~~~~~~~~
-thread-argv.c:112:9: warning: implicit declaration of function ‘pthread_join’ [-Wimplicit-function-declaration]
-  112 |     s = pthread_join(tinfo[tnum].thread_id, &res);
-      |         ^~~~~~~~~~~~
-----
-
-4) Tymothy would like to create a library for creating color pallettes. The
-functions in their library would have the following APIs. 
-
-[source]
-----
-struct ppm_pixel {
-  union {
-    struct {
-      unsigned char red;
-      unsigned char green;
-      unsigned char blue;
-    };
-    unsigned char colors[3];
-  };
-};
-
-// Creates and initializes a pallet with the given number of random colors
-struct ppm_pixel* create_pallette(int size);
-
-// Frees the memory associated with the given pallette
-void delete_pallette(struct ppm_pixel* pallette);
-----
-
-* How can Tymothy use `ar` to create a static library?
-* How can Tymothy use `gcc` to create a shared library?
-* How might Tymothy implement the given functions?
-* Are the commands for building a library different
-* What is the difference between a header file (.h) and an implementation file (*.c)? 
-* How can Tymothy use the functions in their library? Write a program that tests the pallet function.
+//4) Tymothy would like to create a library for creating color pallettes. The
+//functions in their library would have the following APIs. 
+//
+//[source]
+//----
+//struct ppm_pixel {
+//  union {
+//    struct {
+//      unsigned char red;
+//      unsigned char green;
+//      unsigned char blue;
+//    };
+//    unsigned char colors[3];
+//  };
+//};
+//
+//// Creates and initializes a pallet with the given number of random colors
+//struct ppm_pixel* create_pallette(int size);
+//
+//// Frees the memory associated with the given pallette
+//void delete_pallette(struct ppm_pixel* pallette);
+//----
+//
+//* How can Tymothy use `ar` to create a static library?
+//* How can Tymothy use `gcc` to create a shared library?
+//* How might Tymothy implement the given functions?
+//* Are the commands for building a library different
+//* What is the difference between a header file (.h) and an implementation file (*.c)? 
+//* How can Tymothy use the functions in their library? Write a program that tests the pallet function.
 
 == Advanced pointers
 
@@ -159,18 +134,60 @@ int main() {
 }
 ----
 
+4) Draw the stack and heap diagram for the following program.
+
+[source]
+----
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct headerT {
+  int a;
+  int b;
+};
+
+struct studentT {
+  char name[64];
+  int age;
+  float gpa;
+};
+
+int main() {
+
+  void* data = malloc(sizeof(struct headerT) + 2 * sizeof(struct studentT));
+  struct headerT* header = (struct headerT*) data;
+  header->a = 5;
+  header->b = 7;
+
+  struct studentT* student = (struct studentT*) (header + 1);
+  strncpy(student->name, "Bill", 4);
+  student->age = 18;
+  student->gpa = 3.3;
+
+  student++;
+  strncpy(student->name, "Carol", 5);
+  student->age = 22;
+  student->gpa = 3.6;
+
+  free(data);
+  // draw the stack and heap here
+  return 0;
+}
+----
+
 == Memory
 
 1) Short answers
 
 * What is the memory hierarchy?
-* Why do computers have a memory hierachy?
-* What is a cache hit? A cache miss?
+//* Why do computers have a memory hierachy?
+//* What is a cache hit? A cache miss?
 * What are some examples of primary storage?
 * What are some examples of secondary storage?
 * What is locality and what impact does it have on performance? 
 * What is sbrk()? Why do we use functions such as malloc and free, rather than call sbrk() directly from our programs?
-* What is memory fragmentation and how can it occur?
+//* What is memory fragmentation and how can it occur?
 
 2) In the following code, which variables have temporal locality? spatial locality?
 
@@ -252,12 +269,12 @@ int main() {
 * What is the difference between an interrupt and a trap?
 * Why do we need interrupts and traps?
 * Why do we need special mechanisms, such as pipes or sockets, to communicate between processes?
-* How can you kill a process using `ps` 
+* How can you kill a process using `ps` ?
 * What states can a process be in?
 * What is a zombie process?
 * Why might we want to register a signal handler for the SIGKILL or SIGSEGV signal?
 * When does the OS send the SIGSEGV signal?
-* What are the differences between shared memory, signals and pipes?
+//* What are the differences between shared memory, signals and pipes?
 
 2) The following program creates a zombie process. Why?
 
@@ -306,143 +323,3 @@ int main() {
 ----
 
 4) What type of event does SIGINT represent? Write a program that registers a signal handler for SIGINT?
-
-== Threads
-
-Short answers
-
-* What is a thread?
-* What is a mutex? When do we need to use mutex?
-* What is a race condition?
-* What is deadlock?
-* What does it mean for a function to be thread safe?
-* Why and when might we want to use multiple threads?
-* When might we want to use multiple processes versus multiple threads?
-
-1) Write a multi-threaded program (4 threads) that computes the average of a list of numbers. You can assume that the size of the list can be evenly divided by 4.
-
-2) The following multi-threaded program simulates two bank accounts. But it's not working correctly. What is going on and how can we fix it?
-
-[source]
-----
-struct account {
-  pthread_mutex_t lock;
-  int balance;
-};
-
-void *Transfer(void *args){
-  struct account** accounts = (struct account**) args;
-  struct account* fromAcct = accounts[FROM];
-  struct account* toAcct = accounts[TO];
-
-  for (int i = 0; i < 10000; i++) {
-    pthread_mutex_lock(&fromAcct->lock);
-    pthread_mutex_lock(&toAcct->lock);
-
-    fromAcct->balance -= 25;
-    toAcct->balance += 25;
-
-    pthread_mutex_unlock(&fromAcct->lock);
-    pthread_mutex_unlock(&toAcct->lock);
-  }
-
-  return NULL;
-}
-
-int main() {
-
-  // create accounts for A and B
-  struct account accountA;
-  struct account accountB;
-  accountA.balance = 100;
-  accountB.balance = 50;
-  pthread_mutex_init(&accountA.lock, NULL);
-  pthread_mutex_init(&accountB.lock, NULL);
-  printf("Starting balances:\n");
-  printf("\tA: %d\n", accountA.balance);
-  printf("\tB: %d\n", accountB.balance);
-
-  // create threads
-  struct account* transformA2B[2];
-  transformA2B[0] = &accountA;
-  transformA2B[1] = &accountB;
-
-  struct account* transformB2A[2];
-  transformB2A[0] = &accountB;
-  transformB2A[1] = &accountA;
-
-  pthread_t A2B, B2A;
-  pthread_create(&A2B, NULL, Transfer, &transformA2B);
-  pthread_create(&B2A, NULL, Transfer, &transformB2A);
-
-  // wait for threads to finish
-  pthread_join(A2B, NULL);
-  pthread_join(B2A, NULL);
-
-  printf("Ending balances:\n");
-  printf("\tA: %d\n", accountA.balance);
-  printf("\tB: %d\n", accountB.balance);
-
-  // cleanup
-  pthread_mutex_destroy(&accountA.lock);
-  pthread_mutex_destroy(&accountB.lock);
-
-  return 0;
-}
-----
-
-3) The following multi-threaded program attempts to count the numbers in a list that are greater than 1000 but isn't working correctly. What is going on and how can we fix it?
-
-[source]
-----
-#define SIZE 100000
-
-static unsigned long long count = 0;
-struct thread_data {
-  int start_index;
-  int end_index;
-  int* array;
-};
-
-void *countOver1000(void *userdata) {
-  struct thread_data *data = (struct thread_data *) userdata;
-
-  for (int i = data->start_index; i < data->end_index; i++) {
-    if (data->array[i] > 1000) {
-      count++;
-    }
-  }
-  return (void*) NULL;
-}
-
-int main(int argc, char *argv[]) {
-  srand(time(0));
-
-  int values[SIZE];
-  unsigned long long test = 0;
-  for (int i = 0; i < SIZE; i++) {
-    values[i] = rand() % SIZE;
-    if (values[i] > 1000) test++;
-  }
-
-  printf("Test with 4 threads\n");
-  pthread_t threads[4];
-  struct thread_data data[4];
-  int subsize = SIZE/4; // assume multiple of 4
-  for (int i = 0; i < 4; i++) {
-    data[i].array = values;
-    data[i].start_index = subsize*i;
-    data[i].end_index = subsize*(i+1);
-    pthread_create(&threads[i], NULL, countOver1000, (void*) &data[i]);
-  }
-
-  for (int i = 0; i < 4; i++) {
-    pthread_join(threads[i], NULL);
-  }
-
-  printf("Answer with threads: %llu\n", count);
-  printf("Correct answer: %llu\n", test);
-
-  return 0;
-}
-----

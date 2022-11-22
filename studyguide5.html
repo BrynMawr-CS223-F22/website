@@ -17,11 +17,9 @@
 <li><a href="#_study_guide_5">Study Guide 5</a></li>
 <li><a href="#_practice_questions">Practice questions</a>
 <ul class="sectlevel2">
-<li><a href="#_compiling_and_linking">Compiling and linking</a></li>
 <li><a href="#_advanced_pointers">Advanced pointers</a></li>
 <li><a href="#_memory">Memory</a></li>
 <li><a href="#_os_processes">OS, Processes</a></li>
-<li><a href="#_threads">Threads</a></li>
 </ul>
 </li>
 </ul>
@@ -43,9 +41,6 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Compiling and linking</p>
-</li>
-<li>
 <p>Memory hierarchy, primary and secondary storage, caches, temporal and spatial locality</p>
 </li>
 <li>
@@ -61,138 +56,23 @@
 <p>fork(), wait(), pid, ps</p>
 </li>
 <li>
-<p>Interprocess communication: signals, sockets, pipes, shared memory</p>
-</li>
-<li>
-<p>Threads</p>
+<p>Interprocess communication: signals, shared memory</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You will not be asked to write a program that uses sockets, pipes, or shared memory but you should understand what they are and how/when they are used.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_practice_questions">Practice questions</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_compiling_and_linking">Compiling and linking</h3>
 <div class="paragraph">
-<p>1) Short answers</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>What is the difference between compiling and linking?</p>
-</li>
-<li>
-<p>What is a library? When would you use one?</p>
-</li>
-<li>
-<p>What are differences between an application and a library?</p>
-</li>
-<li>
-<p>What is the difference between static and dynamic libraries? Why might you want to use one over the other?</p>
-</li>
-<li>
-<p>What does the pre-processor do?</p>
-</li>
-<li>
-<p>What is the purpose of compiling and linking?</p>
-</li>
-</ul>
+<p>///usr/bin/ld: /tmp/ccH1QHw0.o: in function `main':
+///usr/bin/ld: thread-argv.c:(.text+0x2e4): undefined reference to `pthread_create'
+///usr/bin/ld: thread-argv.c:(.text+0x38d): undefined reference to `pthread_join'</p>
 </div>
 <div class="paragraph">
-<p>2) Ann-marie has the following errors when she tried to build. What type of error is it (compile, link, runtime, or logical)? How can she fix it?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>/usr/bin/ld: /tmp/ccH1QHw0.o: in function `main':
-thread-argv.c:(.text+0x1c4): undefined reference to `pthread_attr_setstacksize'
-/usr/bin/ld: thread-argv.c:(.text+0x2e4): undefined reference to `pthread_create'
-/usr/bin/ld: thread-argv.c:(.text+0x38d): undefined reference to `pthread_join'
-collect2: error: ld returned 1 exit status</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>3) Ann-marie has the following errors when she tries to build. What type of error is it (compile, link, runtime, or logical)? How can she fix it?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>thread-argv.c: In function ‘main’:
-thread-argv.c:71:7: warning: implicit declaration of function ‘pthread_attr_init’ [-Wimplicit-function-declaration]
-   71 |   s = pthread_attr_init(&amp;attr);
-      |       ^~~~~~~~~~~~~~~~~
-thread-argv.c:76:9: warning: implicit declaration of function ‘pthread_attr_setstacksize’ [-Wimplicit-function-declaration]
-   76 |     s = pthread_attr_setstacksize(&amp;attr, stack_size);
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~
-thread-argv.c:96:9: warning: implicit declaration of function ‘pthread_create’ [-Wimplicit-function-declaration]
-   96 |     s = pthread_create(&amp;tinfo[tnum].thread_id, &amp;attr,
-      |         ^~~~~~~~~~~~~~
-thread-argv.c:105:7: warning: implicit declaration of function ‘pthread_attr_destroy’ [-Wimplicit-function-declaration]
-  105 |   s = pthread_attr_destroy(&amp;attr);
-      |       ^~~~~~~~~~~~~~~~~~~~
-thread-argv.c:112:9: warning: implicit declaration of function ‘pthread_join’ [-Wimplicit-function-declaration]
-  112 |     s = pthread_join(tinfo[tnum].thread_id, &amp;res);
-      |         ^~~~~~~~~~~~</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>4) Tymothy would like to create a library for creating color pallettes. The
-functions in their library would have the following APIs.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>struct ppm_pixel {
-  union {
-    struct {
-      unsigned char red;
-      unsigned char green;
-      unsigned char blue;
-    };
-    unsigned char colors[3];
-  };
-};
-
-// Creates and initializes a pallet with the given number of random colors
-struct ppm_pixel* create_pallette(int size);
-
-// Frees the memory associated with the given pallette
-void delete_pallette(struct ppm_pixel* pallette);</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>How can Tymothy use <code>ar</code> to create a static library?</p>
-</li>
-<li>
-<p>How can Tymothy use <code>gcc</code> to create a shared library?</p>
-</li>
-<li>
-<p>How might Tymothy implement the given functions?</p>
-</li>
-<li>
-<p>Are the commands for building a library different</p>
-</li>
-<li>
-<p>What is the difference between a header file (.h) and an implementation file (*.c)?</p>
-</li>
-<li>
-<p>How can Tymothy use the functions in their library? Write a program that tests the pallet function.</p>
-</li>
-</ul>
-</div>
+<p>//// Creates and initializes a pallet with the given number of random colors
+//// Frees the memory associated with the given pallette</p>
 </div>
 <div class="sect2">
 <h3 id="_advanced_pointers">Advanced pointers</h3>
@@ -256,6 +136,49 @@ int main() {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>4) Draw the stack and heap diagram for the following program.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct headerT {
+  int a;
+  int b;
+};
+
+struct studentT {
+  char name[64];
+  int age;
+  float gpa;
+};
+
+int main() {
+
+  void* data = malloc(sizeof(struct headerT) + 2 * sizeof(struct studentT));
+  struct headerT* header = (struct headerT*) data;
+  header-&gt;a = 5;
+  header-&gt;b = 7;
+
+  struct studentT* student = (struct studentT*) (header + 1);
+  strncpy(student-&gt;name, "Bill", 4);
+  student-&gt;age = 18;
+  student-&gt;gpa = 3.3;
+
+  student++;
+  strncpy(student-&gt;name, "Carol", 5);
+  student-&gt;age = 22;
+  student-&gt;gpa = 3.6;
+
+  free(data);
+  // draw the stack and heap here
+  return 0;
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_memory">Memory</h3>
@@ -268,12 +191,6 @@ int main() {
 <p>What is the memory hierarchy?</p>
 </li>
 <li>
-<p>Why do computers have a memory hierachy?</p>
-</li>
-<li>
-<p>What is a cache hit? A cache miss?</p>
-</li>
-<li>
 <p>What are some examples of primary storage?</p>
 </li>
 <li>
@@ -284,9 +201,6 @@ int main() {
 </li>
 <li>
 <p>What is sbrk()? Why do we use functions such as malloc and free, rather than call sbrk() directly from our programs?</p>
-</li>
-<li>
-<p>What is memory fragmentation and how can it occur?</p>
 </li>
 </ul>
 </div>
@@ -391,7 +305,7 @@ int main() {
 <p>Why do we need special mechanisms, such as pipes or sockets, to communicate between processes?</p>
 </li>
 <li>
-<p>How can you kill a process using <code>ps</code></p>
+<p>How can you kill a process using <code>ps</code> ?</p>
 </li>
 <li>
 <p>What states can a process be in?</p>
@@ -404,9 +318,6 @@ int main() {
 </li>
 <li>
 <p>When does the OS send the SIGSEGV signal?</p>
-</li>
-<li>
-<p>What are the differences between shared memory, signals and pipes?</p>
 </li>
 </ul>
 </div>
@@ -462,174 +373,12 @@ int main() {
 <p>4) What type of event does SIGINT represent? Write a program that registers a signal handler for SIGINT?</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_threads">Threads</h3>
-<div class="paragraph">
-<p>Short answers</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>What is a thread?</p>
-</li>
-<li>
-<p>What is a mutex? When do we need to use mutex?</p>
-</li>
-<li>
-<p>What is a race condition?</p>
-</li>
-<li>
-<p>What is deadlock?</p>
-</li>
-<li>
-<p>What does it mean for a function to be thread safe?</p>
-</li>
-<li>
-<p>Why and when might we want to use multiple threads?</p>
-</li>
-<li>
-<p>When might we want to use multiple processes versus multiple threads?</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>1) Write a multi-threaded program (4 threads) that computes the average of a list of numbers. You can assume that the size of the list can be evenly divided by 4.</p>
-</div>
-<div class="paragraph">
-<p>2) The following multi-threaded program simulates two bank accounts. But it&#8217;s not working correctly. What is going on and how can we fix it?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>struct account {
-  pthread_mutex_t lock;
-  int balance;
-};
-
-void *Transfer(void *args){
-  struct account** accounts = (struct account**) args;
-  struct account* fromAcct = accounts[FROM];
-  struct account* toAcct = accounts[TO];
-
-  for (int i = 0; i &lt; 10000; i++) {
-    pthread_mutex_lock(&amp;fromAcct-&gt;lock);
-    pthread_mutex_lock(&amp;toAcct-&gt;lock);
-
-    fromAcct-&gt;balance -= 25;
-    toAcct-&gt;balance += 25;
-
-    pthread_mutex_unlock(&amp;fromAcct-&gt;lock);
-    pthread_mutex_unlock(&amp;toAcct-&gt;lock);
-  }
-
-  return NULL;
-}
-
-int main() {
-
-  // create accounts for A and B
-  struct account accountA;
-  struct account accountB;
-  accountA.balance = 100;
-  accountB.balance = 50;
-  pthread_mutex_init(&amp;accountA.lock, NULL);
-  pthread_mutex_init(&amp;accountB.lock, NULL);
-  printf("Starting balances:\n");
-  printf("\tA: %d\n", accountA.balance);
-  printf("\tB: %d\n", accountB.balance);
-
-  // create threads
-  struct account* transformA2B[2];
-  transformA2B[0] = &amp;accountA;
-  transformA2B[1] = &amp;accountB;
-
-  struct account* transformB2A[2];
-  transformB2A[0] = &amp;accountB;
-  transformB2A[1] = &amp;accountA;
-
-  pthread_t A2B, B2A;
-  pthread_create(&amp;A2B, NULL, Transfer, &amp;transformA2B);
-  pthread_create(&amp;B2A, NULL, Transfer, &amp;transformB2A);
-
-  // wait for threads to finish
-  pthread_join(A2B, NULL);
-  pthread_join(B2A, NULL);
-
-  printf("Ending balances:\n");
-  printf("\tA: %d\n", accountA.balance);
-  printf("\tB: %d\n", accountB.balance);
-
-  // cleanup
-  pthread_mutex_destroy(&amp;accountA.lock);
-  pthread_mutex_destroy(&amp;accountB.lock);
-
-  return 0;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>3) The following multi-threaded program attempts to count the numbers in a list that are greater than 1000 but isn&#8217;t working correctly. What is going on and how can we fix it?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>#define SIZE 100000
-
-static unsigned long long count = 0;
-struct thread_data {
-  int start_index;
-  int end_index;
-  int* array;
-};
-
-void *countOver1000(void *userdata) {
-  struct thread_data *data = (struct thread_data *) userdata;
-
-  for (int i = data-&gt;start_index; i &lt; data-&gt;end_index; i++) {
-    if (data-&gt;array[i] &gt; 1000) {
-      count++;
-    }
-  }
-  return (void*) NULL;
-}
-
-int main(int argc, char *argv[]) {
-  srand(time(0));
-
-  int values[SIZE];
-  unsigned long long test = 0;
-  for (int i = 0; i &lt; SIZE; i++) {
-    values[i] = rand() % SIZE;
-    if (values[i] &gt; 1000) test++;
-  }
-
-  printf("Test with 4 threads\n");
-  pthread_t threads[4];
-  struct thread_data data[4];
-  int subsize = SIZE/4; // assume multiple of 4
-  for (int i = 0; i &lt; 4; i++) {
-    data[i].array = values;
-    data[i].start_index = subsize*i;
-    data[i].end_index = subsize*(i+1);
-    pthread_create(&amp;threads[i], NULL, countOver1000, (void*) &amp;data[i]);
-  }
-
-  for (int i = 0; i &lt; 4; i++) {
-    pthread_join(threads[i], NULL);
-  }
-
-  printf("Answer with threads: %llu\n", count);
-  printf("Correct answer: %llu\n", test);
-
-  return 0;
-}</code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-23 09:51:30 -0400
+Last updated 2022-11-22 12:20:56 -0500
 </div>
 </div>
 </body>

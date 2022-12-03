@@ -216,7 +216,7 @@ key        shmid      owner      perms      bytes      nattch     status
 
 To remove a shared memory file, run the command `ipcrm -m <shmid>`.
 
-We can have given you a script, `shm_cleanup.sh`, that will remove all shared 
+We have given you a script, link:shm_cleanup.sh[`shm_cleanup.sh`], that will remove all shared 
 memory files on your system.
 
 [source,subs="quotes"]

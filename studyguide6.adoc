@@ -1,6 +1,6 @@
 include::header.adoc[]
 
-:title: Study Guide 5
+:title: Study Guide 6
 :Author Initials: ASN
 :Date:    2020-08-15
 :Revision: 0.1
@@ -11,11 +11,11 @@ Code Jams are open book. 40 minutes in lab.
 
 Topics:
 
-Everything from link:studyguide4.html[Study Guide 4], plus
+Everything from link:studyguide5.html[Study Guide 5], plus
 
-* Threads
-
-NOTE: You will not be asked to write a program that uses sockets, pipes, or shared memory but you should understand what they are and how/when they are used.
+* POSIX threads
+* mutex, barrier
+* deadlock, thread safety
 
 = Practice questions
 

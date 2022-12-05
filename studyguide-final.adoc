@@ -17,7 +17,7 @@ The exam will be a mix of written answers and coding.
 
 Topics:
 
-Everything from link:studyguide5.html[Study Guide 5], plus
+Everything from link:studyguide6.html[Study Guide 6], plus
 
 * Parallel program performance
 * Code optimization
@@ -33,16 +33,8 @@ A special repository has been created for you on Github with the url
 git@github.com:BrynMawr-CS223-S22/<YOUR_USERNAME>-final-exam-practice.git
 ----
 
-Your username is your university email, e.g. one of
-
-[cols="1,1,1,1"]
-|===
-| ahmed1 | aqyang | awilson2 | bhirota
-| bjbarton | firfan | fshahid | gchoe
-| jamccarty | jlei | jluther | kmburu
-| ltran1 | memcculloc | mnguyen2 | nthumu
-| pschaefer1 | tdo | tkleckner | xdai1
-|===
+Your username is the account that corresponds to your university email, not 
+your Github account.
 
 Part of your final grade is your ability to clone your repository, commit, and 
 push your code.

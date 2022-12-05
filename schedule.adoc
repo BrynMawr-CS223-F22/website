@@ -142,6 +142,7 @@
 |*Code Optimization* 
 
 * Read: link:https://diveintosystems.org/singlepage/[Chapter 12] 
+* link:studyguide6.html[Study Guide 6]
 * link:studyguide-final.html[Final Study Guide]
 
 |===

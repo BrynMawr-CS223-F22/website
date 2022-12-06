@@ -30,11 +30,18 @@ A special repository has been created for you on Github with the url
 
 [source]
 ----
-git@github.com:BrynMawr-CS223-S22/<YOUR_USERNAME>-final-exam-practice.git
+git@github.com:BrynMawr-CS223-F22/<YOUR_USERNAME>-final-exam-practice.git
 ----
 
-Your username is the account that corresponds to your university email, not 
-your Github account.
+Your username is your university email, e.g. one of
+
+[cols="1,1,1,1"]
+|===
+| amarmerada | ychen1 | cragobar | ddinh
+| dsoemitro | bho | jfabiandub | jkang1
+| jtorres | ssitaf | tduong | tfeshbach
+| tchinzorig | | |
+|===
 
 Part of your final grade is your ability to clone your repository, commit, and 
 push your code.
